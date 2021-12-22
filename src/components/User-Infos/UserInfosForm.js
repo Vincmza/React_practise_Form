@@ -1,5 +1,5 @@
 import { Field, BirthDate, Email, Phone, GitHub } from "./Inputs";
-import React, {useState} from "react";
+import React from "react";
 
 function UserInfosForm({userData, setUserData}) {
 	return (
