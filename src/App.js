@@ -6,7 +6,10 @@ import { RadioButton } from "./components/User-Infos/Inputs";
 import "./App.css";
 
 function App() {
-	//DISPLAY USER INFOS INPUTS PANNEL
+	//STORE USER INFOS
+	const [userData, setUserData] = useState({});
+	console.log(userData)
+	//DISPLAY USER INFOS INPUTS
 	const [displayUserInfos, setDisplayUserInfos] = useState(false);
 	const handleUserInfos = () => {
 		if (displayUserInfos == false) {
@@ -15,6 +18,7 @@ function App() {
 			setDisplayUserInfos(false);
 		}
 	};
+	//DISPLAY SKILLS INFOS
 	const [displaySkills, setDisplaySkills] = useState(false);
 	const handleSkillsInfos = () => {
 		if (displaySkills == false) {
@@ -27,7 +31,6 @@ function App() {
 		<div className="App">
 			<form className="form-container">
 				<RadioButton
-					value={displayUserInfos}
 					onClick={() => handleUserInfos()}
 					checked={displayUserInfos}
 				>
@@ -36,13 +39,12 @@ function App() {
 
 				{displayUserInfos == true ? (
 					<>
-						<UserInfosForm />
+						<UserInfosForm userData={userData} setUserData={setUserData} />
 					</>
 				) : (
 					<></>
 				)}
 				<RadioButton
-					value={displaySkills}
 					onClick={() => handleSkillsInfos()}
 					checked={displaySkills}
 				>

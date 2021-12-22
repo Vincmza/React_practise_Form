@@ -1,14 +1,13 @@
 import { Field, BirthDate, Email, Phone, GitHub } from "./Inputs";
 import React, {useState} from "react";
 
-function UserInfosForm() {
-    const [userData, setUserData] = useState({});
+function UserInfosForm({userData, setUserData}) {
 	return (
 		<div>
 			<Field
 				name="lastname"
 				value={userData.lastName}
-				onChange={(e) => setUserData({ lastName: e.target.value })}
+				onChange={(e) => setUserData(previousValue=>({...previousValue, lastName: e.target.value }))}
 			>
 				Nom
 			</Field>
@@ -16,7 +15,7 @@ function UserInfosForm() {
 			<Field
 				name="firstname"
 				value={userData.firstName}
-				onChange={(e) => setUserData({ firstName: e.target.value })}
+				onChange={(e) => setUserData(previousValue=>({...previousValue, firstName: e.target.value }))}
 			>
 				Prénom
 			</Field>
@@ -24,7 +23,7 @@ function UserInfosForm() {
 			<BirthDate
 				name="birthdate"
 				value={userData.birthDate}
-				onChange={(e) => setUserData({ birthDate: e.target.value })}
+				onChange={(e) => setUserData(previousValue=>({...previousValue, birthDate: e.target.value }))}
 			>
 				Date de naissance
 			</BirthDate>
@@ -32,7 +31,7 @@ function UserInfosForm() {
 			<Email
 				name="email"
 				value={userData.email}
-				onChange={(e) => setUserData({ email: e.target.value })}
+				onChange={(e) => setUserData(previousValue=>({...previousValue, email: e.target.value }))}
 			>
 				Email
 			</Email>
@@ -40,7 +39,7 @@ function UserInfosForm() {
 			<Phone
 				name="phone"
 				value={userData.phone}
-				onChange={(e) => setUserData({ phone: e.target.value })}
+				onChange={(e) => setUserData(previousValue=>({...previousValue, phone: e.target.value }))}
 			>
 				Téléphone
 			</Phone>
@@ -48,7 +47,7 @@ function UserInfosForm() {
 			<GitHub
 				name="github-link"
 				value={userData.gitHubLink}
-				onChange={(e) => setUserData({ gitHubLink: e.target.value })}
+				onChange={(e) => setUserData(previousValue=>({...previousValue, gitHubLink: e.target.value }))}
 			>
 				Lien Github
 			</GitHub>
