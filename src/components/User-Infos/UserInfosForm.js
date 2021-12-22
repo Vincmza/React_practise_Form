@@ -3,7 +3,6 @@ import React, {useState} from "react";
 
 function UserInfosForm() {
     const [userData, setUserData] = useState({});
-    console.log(userData)
 	return (
 		<div>
 			<Field
