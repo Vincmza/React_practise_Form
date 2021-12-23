@@ -1,8 +1,32 @@
 import React from "react";
 import { SkillInput } from "./Inputs";
 
-const SkillsInfosForm = ({ frontEndSkills, setFrontEndSkills, backEndSkills, setBackEndSkills }) => {
-    
+const SkillsInfosForm = ({frontEndSkills, setFrontEndSkills, backEndSkills, setBackEndSkills}) => {
+	//STORING FRONT END SKILLS
+	const handleCheckFront = (e)=>{
+		if(e.target.checked === true){
+			setFrontEndSkills(previousValue=>([...previousValue, e.target.value]))
+		}
+		else {
+			const array = [...frontEndSkills]
+			const index = array.indexOf(e.target.value)
+			array.splice(index,1)
+			setFrontEndSkills(array)		
+		}
+	}
+	//STORING BACKEND SKILLS
+	const handleCheckBack = (e)=>{
+		if(e.target.checked === true){
+			setBackEndSkills(previousValue=>([...previousValue, e.target.value]))
+		}
+		else {
+			const array = [...backEndSkills]
+			const index = array.indexOf(e.target.value)
+			array.splice(index,1)
+			setBackEndSkills(array)		
+		}
+	}
+	//FUNCTION HANDLING THE SUBMIT DATA PROCESS, NOT FINISHED YET
 	const handleSubmit = (e) => {
 		e.preventDefault();       
 	};
@@ -13,51 +37,51 @@ const SkillsInfosForm = ({ frontEndSkills, setFrontEndSkills, backEndSkills, set
 
 				<SkillInput
 					name="html"
-					value={frontEndSkills.Name}
-                    onClick={(e) => setFrontEndSkills(previousValue=>({...previousValue, Name: "HTML5", Check: e.target.checked }))}
+					value="HTML"
+                    onChange={handleCheckFront}
 				>
 					HTML5
 				</SkillInput>
 
 				<SkillInput 
                     name="css"
-                    value={frontEndSkills.Name}
-                    onClick={(e) => setFrontEndSkills(previousValue=>({...previousValue, Name : "CSS3", Check : e.target.checked }))}
+                    value="CSS3"
+                    onChange={handleCheckFront}
                 >
 					CSS3
 				</SkillInput>
 				<SkillInput 
                     name="javascript" 
-                    value={frontEndSkills.Name}
-                    onClick={(e) => setFrontEndSkills(previousValue=>({...previousValue, Name : "JavaScript", Check : e.target.checked }))}
+                    value="Javascript"
+                    onChange={handleCheckFront}
                 >
 					Javascript
 				</SkillInput>
 				<SkillInput 
                     name="react" 
-                    value={frontEndSkills.React}
-                    onClick={(e) => setFrontEndSkills(previousValue=>({...previousValue, React: e.target.checked }))}
+                    value="React"
+                    onChange={handleCheckFront}
                 >
 					React.js
 				</SkillInput>
 				<SkillInput 
                     name="vue" 
-                    value={frontEndSkills.Vue}
-                    onClick={(e) => setFrontEndSkills(previousValue=>({...previousValue, Vue: e.target.checked }))}
+                    value="Vue"
+                    onChange={handleCheckFront}
                 >
 					Vue.js
 				</SkillInput>
 				<SkillInput 
                     name="angular" 
-                    value={frontEndSkills.Angular}
-                    onClick={(e) => setFrontEndSkills(previousValue=>({...previousValue, Angular: e.target.checked }))}
+                    value="Angular"
+                    onChange={handleCheckFront}
                 >
 					Angular
 				</SkillInput>
 				<SkillInput 
                     name="ember" 
                     value="Ember"
-                    onClick={(e) => setFrontEndSkills(previousValue=>({...previousValue, Ember: e.target.checked }))}
+                    onChange={handleCheckFront}
                 >
 					Ember
 				</SkillInput>
@@ -66,57 +90,57 @@ const SkillsInfosForm = ({ frontEndSkills, setFrontEndSkills, backEndSkills, set
 				<p>Compétences Backend</p>
 				<SkillInput 
                     name="php" 
-                    value={backEndSkills.PHP}
-                    onClick={(e) => setBackEndSkills(previousValue=>({...previousValue, PHP: e.target.checked }))}
+                    value="PHP"
+                    onChange={handleCheckBack}
                 >
 					PHP
 				</SkillInput>
 				<SkillInput 
                     name="ruby" 
-                    value={backEndSkills.Ruby}
-                    onClick={(e) => setBackEndSkills(previousValue=>({...previousValue, Ruby: e.target.checked }))}
+                    value="Ruby"
+                    onChange={handleCheckBack}
                 >
 					Ruby
 				</SkillInput>
 				<SkillInput 
                     name="symphony"
-                    value={backEndSkills.Symphony}
-                    onClick={(e) => setBackEndSkills(previousValue=>({...previousValue, Symphony: e.target.checked }))}
+                    value="Symphony"
+                    onChange={handleCheckBack}
                 >
 					Symphony
 				</SkillInput>
 				<SkillInput 
                     name="node" 
-                    value={backEndSkills.Node}
-                    onClick={(e) => setBackEndSkills(previousValue=>({...previousValue, Node: e.target.checked }))}
+                    value="Node"
+                    onChange={handleCheckBack}
                 >
 					Node.js
 				</SkillInput>
 				<SkillInput 
                     name="python" 
-                    value={backEndSkills.Python}
-                    onClick={(e) => setBackEndSkills(previousValue=>({...previousValue, Python: e.target.checked }))}
+                    value="Python"
+                    onChange={handleCheckBack}
                 >
 					Python
 				</SkillInput>
 				<SkillInput 
                     name="sql" 
-                    value={backEndSkills.SQL}
-                    onClick={(e) => setBackEndSkills(previousValue=>({...previousValue, SQL: e.target.checked }))}
+                    value="SQL"
+                    onChange={handleCheckBack}
                 >
 					SQL
 				</SkillInput>
 				<SkillInput 
                     name="sequelize" 
-                    value={backEndSkills.Sequelize}
-                    onClick={(e) => setBackEndSkills(previousValue=>({...previousValue, Sequelize: e.target.checked }))}
+                    value="Sequelize"
+                    onChange={handleCheckBack}
                 >
 					Sequelize
 				</SkillInput>
 				<SkillInput 
                 name="postgresql" 
-                value={backEndSkills.PostgreSQL}
-                onClick={(e) => setBackEndSkills(previousValue=>({...previousValue, PostgreSQL: e.target.checked }))}
+                value="PostegreSQL"
+                onChange={handleCheckBack}
                 >
 					PostgreSQL
 				</SkillInput>
