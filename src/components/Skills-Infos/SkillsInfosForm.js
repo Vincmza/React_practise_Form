@@ -2,11 +2,9 @@ import React from "react";
 import { SkillInput } from "./Inputs";
 
 const SkillsInfosForm = ({ frontEndSkills, setFrontEndSkills, backEndSkills, setBackEndSkills }) => {
-    let skills = []
+    
 	const handleSubmit = (e) => {
-		e.preventDefault();
-        console.log(frontEndSkills)
-        
+		e.preventDefault();       
 	};
 	return (
 		<div>
@@ -15,23 +13,23 @@ const SkillsInfosForm = ({ frontEndSkills, setFrontEndSkills, backEndSkills, set
 
 				<SkillInput
 					name="html"
-					value={frontEndSkills.HTML5}
-                    onClick={(e) => setFrontEndSkills(previousValue=>({...previousValue, HTML5: e.target.checked }))}
+					value={frontEndSkills.Name}
+                    onClick={(e) => setFrontEndSkills(previousValue=>({...previousValue, Name: "HTML5", Check: e.target.checked }))}
 				>
 					HTML5
 				</SkillInput>
 
 				<SkillInput 
                     name="css"
-                    value={frontEndSkills.CSS3}
-                    onClick={(e) => setFrontEndSkills(previousValue=>({...previousValue, CSS3: e.target.checked }))}
+                    value={frontEndSkills.Name}
+                    onClick={(e) => setFrontEndSkills(previousValue=>({...previousValue, Name : "CSS3", Check : e.target.checked }))}
                 >
 					CSS3
 				</SkillInput>
 				<SkillInput 
                     name="javascript" 
-                    value={frontEndSkills.JavaScript}
-                    onClick={(e) => setFrontEndSkills(previousValue=>({...previousValue, JavaScript: e.target.checked }))}
+                    value={frontEndSkills.Name}
+                    onClick={(e) => setFrontEndSkills(previousValue=>({...previousValue, Name : "JavaScript", Check : e.target.checked }))}
                 >
 					Javascript
 				</SkillInput>

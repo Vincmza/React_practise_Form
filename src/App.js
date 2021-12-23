@@ -22,7 +22,7 @@ function App() {
 			setDisplayUserInfos(false);
 		}
 	};
-	
+
 	//DISPLAY SKILLS INFOS
 	const [displaySkills, setDisplaySkills] = useState(false);
 	const handleSkillsInfos = () => {
