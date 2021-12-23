@@ -8,20 +8,25 @@ import "./App.css";
 function App() {
 	//STORE USER INFOS
 	const [userData, setUserData] = useState({});
-	console.log(userData)
+	//STORE FRONTEND SKILLS
+	const [frontEndSkills, setFrontEndSkills] = useState([])
+	//STORE BACKEND SKILLS
+	const [backEndSkills, setBackEndSkills]= useState([])
+
 	//DISPLAY USER INFOS INPUTS
 	const [displayUserInfos, setDisplayUserInfos] = useState(false);
 	const handleUserInfos = () => {
-		if (displayUserInfos == false) {
+		if (displayUserInfos === false) {
 			setDisplayUserInfos(true);
 		} else {
 			setDisplayUserInfos(false);
 		}
 	};
+	
 	//DISPLAY SKILLS INFOS
 	const [displaySkills, setDisplaySkills] = useState(false);
 	const handleSkillsInfos = () => {
-		if (displaySkills == false) {
+		if (displaySkills === false) {
 			setDisplaySkills(true);
 		} else {
 			setDisplaySkills(false);
@@ -37,7 +42,7 @@ function App() {
 					Je renseigne mes informations personnelles
 				</RadioButton>
 
-				{displayUserInfos == true ? (
+				{displayUserInfos === true ? (
 					<>
 						<UserInfosForm userData={userData} setUserData={setUserData} />
 					</>
@@ -50,9 +55,14 @@ function App() {
 				>
 					Je renseigne mes compétences
 				</RadioButton>
-				{displaySkills == true ? (
+				{displaySkills === true ? (
 					<>
-						<SkillsInfosForm />
+						<SkillsInfosForm 
+							frontEndSkills={frontEndSkills} 
+							setFrontEndSkills={setFrontEndSkills}
+							backEndSkills={backEndSkills}
+							setBackEndSkills={setBackEndSkills}
+						/>
 					</>
 				) : (
 					<></>
