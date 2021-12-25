@@ -2,12 +2,13 @@ import React, { useState } from "react";
 //components
 import UserInfosForm from "./components/User-Infos/UserInfosForm";
 import SkillsInfosForm from "./components/Skills-Infos/SkillsInfosForm";
+import SkillsValidButton from "./components/SkillsValidButton";
 import { RadioButton } from "./components/User-Infos/Inputs";
 import "./App.css";
 
 function App() {
 	//STORE USER INFOS
-	const [userData, setUserData] = useState({});
+	const [userData, setUserData] = useState([]);
 	//STORE FRONTEND SKILLS
 	const [frontEndSkills, setFrontEndSkills] = useState([])
 	//STORE BACKEND SKILLS
@@ -49,6 +50,7 @@ function App() {
 				) : (
 					<></>
 				)}
+				
 				<RadioButton
 					onClick={() => handleSkillsInfos()}
 					checked={displaySkills}
@@ -67,6 +69,7 @@ function App() {
 				) : (
 					<></>
 				)}
+				<SkillsValidButton frontEndSkills={frontEndSkills} backEndSkills={backEndSkills}/>
 			</form>
 		</div>
 	);

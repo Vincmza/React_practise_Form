@@ -26,10 +26,6 @@ const SkillsInfosForm = ({frontEndSkills, setFrontEndSkills, backEndSkills, setB
 			setBackEndSkills(array)		
 		}
 	}
-	//FUNCTION HANDLING THE SUBMIT DATA PROCESS, NOT FINISHED YET
-	const handleSubmit = (e) => {
-		e.preventDefault();       
-	};
 	return (
 		<div>
 			<div className="frontend-skills-container">
@@ -145,9 +141,6 @@ const SkillsInfosForm = ({frontEndSkills, setFrontEndSkills, backEndSkills, setB
 					PostgreSQL
 				</SkillInput>
 			</div>
-			<button type="submit" onClick={handleSubmit}>
-				Valider mes compétences
-			</button>
 		</div>
 	);
 };
