@@ -2,12 +2,16 @@ import { Field, BirthDate, Email, Phone, GitHub } from "./Inputs";
 import React from "react";
 
 function UserInfosForm({userData, setUserData}) {
+	const handleChange = (e)=>{
+		setUserData(pv=>({...pv, [e.target.name]:e.target.value}))
+	}
+	console.log(userData)
 	return (
 		<div>
 			<Field
 				name="lastname"
-				value={userData.lastName}
-				onChange={(e) => setUserData(previousValue=>({...previousValue, lastName: e.target.value }))}
+				value={userData.lastname}
+				onChange={handleChange}
 			>
 				Nom
 			</Field>
@@ -15,15 +19,15 @@ function UserInfosForm({userData, setUserData}) {
 			<Field
 				name="firstname"
 				value={userData.firstName}
-				onChange={(e) => setUserData(previousValue=>({...previousValue, firstName: e.target.value }))}
+				onChange={handleChange}
 			>
 				Prénom
 			</Field>
 
 			<BirthDate
 				name="birthdate"
-				value={userData.birthDate}
-				onChange={(e) => setUserData(previousValue=>({...previousValue, birthDate: e.target.value }))}
+				value={userData.birthdate}
+				onChange={handleChange}
 			>
 				Date de naissance
 			</BirthDate>
@@ -31,7 +35,7 @@ function UserInfosForm({userData, setUserData}) {
 			<Email
 				name="email"
 				value={userData.email}
-				onChange={(e) => setUserData(previousValue=>({...previousValue, email: e.target.value }))}
+				onChange={handleChange}
 			>
 				Email
 			</Email>
@@ -39,15 +43,15 @@ function UserInfosForm({userData, setUserData}) {
 			<Phone
 				name="phone"
 				value={userData.phone}
-				onChange={(e) => setUserData(previousValue=>({...previousValue, phone: e.target.value }))}
+				onChange={handleChange}
 			>
 				Téléphone
 			</Phone>
 
 			<GitHub
-				name="github-link"
-				value={userData.gitHubLink}
-				onChange={(e) => setUserData(previousValue=>({...previousValue, gitHubLink: e.target.value }))}
+				name="githubLink"
+				value={userData.githubLink}
+				onChange={handleChange}
 			>
 				Lien Github
 			</GitHub>
