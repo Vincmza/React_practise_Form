@@ -2,7 +2,7 @@ import React, { useState } from "react";
 //components
 import UserInfosForm from "./components/User-Infos/UserInfosForm";
 import SkillsInfosForm from "./components/Skills-Infos/SkillsInfosForm";
-import SkillsValidButton from "./components/SkillsValidButton";
+import DisplaySkills from "./components/DisplaySkills";
 import { RadioButton } from "./components/User-Infos/Inputs";
 import "./App.css";
 
@@ -11,6 +11,7 @@ function App() {
 	const [userData, setUserData] = useState([]);
 	//STORE FRONTEND SKILLS
 	const [frontEndSkills, setFrontEndSkills] = useState([])
+	console.log(frontEndSkills);
 	//STORE BACKEND SKILLS
 	const [backEndSkills, setBackEndSkills]= useState([])
 
@@ -69,7 +70,17 @@ function App() {
 				) : (
 					<></>
 				)}
-				<SkillsValidButton frontEndSkills={frontEndSkills} backEndSkills={backEndSkills}/>
+				<DisplaySkills frontEndSkills={frontEndSkills} backEndSkills={backEndSkills}/>
+				{/* {frontEndSkills.length > 0 ? (<>
+					<ul>
+						{frontEndSkills.map((skill,index)=>
+							<li key={index} value={skill}>{skill}</li>
+						)}
+					</ul>
+					
+				</>) : (
+				<>
+				</>)} */}
 			</form>
 		</div>
 	);
