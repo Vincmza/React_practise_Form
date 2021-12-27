@@ -11,7 +11,6 @@ import "./App.css";
 function App() {
 	//STORE USER INFOS
 	const [userData, setUserData] = useState([]);
-	console.log(userData);
 	//STORE FRONTEND SKILLS
 	const [frontEndSkills, setFrontEndSkills] = useState([])
 	//STORE BACKEND SKILLS
@@ -49,7 +48,7 @@ function App() {
 				{displayUserInfos === true ? (
 					<>
 						<UserInfosForm userData={userData} setUserData={setUserData} />
-						<DisplayUser userData={userData} />
+						<DisplayUser userData={userData} setUserData={setUserData} />
 					</>
 				) : (
 					<></>
@@ -73,8 +72,7 @@ function App() {
 				) : (
 					<></>
 				)}
-				<DisplaySkills frontEndSkills={frontEndSkills} backEndSkills={backEndSkills}/>
-				
+				<DisplaySkills frontEndSkills={frontEndSkills} backEndSkills={backEndSkills}/>				
 			</form>
 		</div>
 	);
