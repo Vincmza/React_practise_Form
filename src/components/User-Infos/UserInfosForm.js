@@ -3,30 +3,26 @@ import React from "react";
 
 function UserInfosForm({userData, setUserData}) {
 	const handleChange = (e)=>{
-		setUserData(pv=>({...pv, [e.target.name]:e.target.value}))
+		setUserData(pv=>({...pv, [e.target.name] : e.target.value}))
 	}
-	console.log(userData)
 	return (
 		<div>
 			<Field
-				name="lastname"
-				value={userData.lastname}
+				name="Nom"
 				onChange={handleChange}
 			>
 				Nom
 			</Field>
 
 			<Field
-				name="firstname"
-				value={userData.firstName}
+				name="Prénom"
 				onChange={handleChange}
 			>
 				Prénom
 			</Field>
 
 			<BirthDate
-				name="birthdate"
-				value={userData.birthdate}
+				name="Date de naissance"
 				onChange={handleChange}
 			>
 				Date de naissance
@@ -34,23 +30,20 @@ function UserInfosForm({userData, setUserData}) {
 
 			<Email
 				name="email"
-				value={userData.email}
 				onChange={handleChange}
 			>
 				Email
 			</Email>
 
 			<Phone
-				name="phone"
-				value={userData.phone}
+				name="Téléphone"
 				onChange={handleChange}
 			>
 				Téléphone
 			</Phone>
 
 			<GitHub
-				name="githubLink"
-				value={userData.githubLink}
+				name="Lien Github ou Gitlab"
 				onChange={handleChange}
 			>
 				Lien Github

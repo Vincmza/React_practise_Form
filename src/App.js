@@ -3,15 +3,17 @@ import React, { useState } from "react";
 import UserInfosForm from "./components/User-Infos/UserInfosForm";
 import SkillsInfosForm from "./components/Skills-Infos/SkillsInfosForm";
 import DisplaySkills from "./components/DisplaySkills";
+import DisplayUser from "./components/DisplayUser";
 import { RadioButton } from "./components/User-Infos/Inputs";
 import "./App.css";
+
 
 function App() {
 	//STORE USER INFOS
 	const [userData, setUserData] = useState([]);
+	console.log(userData);
 	//STORE FRONTEND SKILLS
 	const [frontEndSkills, setFrontEndSkills] = useState([])
-	console.log(frontEndSkills);
 	//STORE BACKEND SKILLS
 	const [backEndSkills, setBackEndSkills]= useState([])
 
@@ -24,7 +26,6 @@ function App() {
 			setDisplayUserInfos(false);
 		}
 	};
-
 	//DISPLAY SKILLS INFOS
 	const [displaySkills, setDisplaySkills] = useState(false);
 	const handleSkillsInfos = () => {
@@ -37,6 +38,7 @@ function App() {
 	return (
 		<div className="App">
 			<form className="form-container">
+				{/*BUTTON TO DISPLAY USER INFOS INPUTS*/}
 				<RadioButton
 					onClick={() => handleUserInfos()}
 					checked={displayUserInfos}
@@ -47,11 +49,12 @@ function App() {
 				{displayUserInfos === true ? (
 					<>
 						<UserInfosForm userData={userData} setUserData={setUserData} />
+						<DisplayUser userData={userData} />
 					</>
 				) : (
 					<></>
 				)}
-				
+				{/*BUTTON TO DISPLAY SKILLS INFOS INPUTS*/}
 				<RadioButton
 					onClick={() => handleSkillsInfos()}
 					checked={displaySkills}
@@ -71,16 +74,7 @@ function App() {
 					<></>
 				)}
 				<DisplaySkills frontEndSkills={frontEndSkills} backEndSkills={backEndSkills}/>
-				{/* {frontEndSkills.length > 0 ? (<>
-					<ul>
-						{frontEndSkills.map((skill,index)=>
-							<li key={index} value={skill}>{skill}</li>
-						)}
-					</ul>
-					
-				</>) : (
-				<>
-				</>)} */}
+				
 			</form>
 		</div>
 	);
