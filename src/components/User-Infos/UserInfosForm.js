@@ -5,6 +5,9 @@ function UserInfosForm({userData, setUserData}) {
 	const handleChange = (e)=>{
 		setUserData(pv=>({...pv, [e.target.name] : e.target.value}))
 	}
+	const handleBirth = (e)=>{
+		setUserData(pv=>({...pv, [e.target.name] : e.target.value.split("-").reverse().join("-")}))
+	}
 	return (
 		<div>
 			<Field
@@ -23,7 +26,7 @@ function UserInfosForm({userData, setUserData}) {
 
 			<BirthDate
 				name="Date de naissance"
-				onChange={handleChange}
+				onChange={handleBirth}
 			>
 				Date de naissance
 			</BirthDate>
