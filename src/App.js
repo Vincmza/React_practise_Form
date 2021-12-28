@@ -19,20 +19,12 @@ function App() {
 	//DISPLAY USER INFOS INPUTS
 	const [displayUserInfos, setDisplayUserInfos] = useState(false);
 	const handleUserInfos = () => {
-		if (displayUserInfos === false) {
-			setDisplayUserInfos(true);
-		} else {
-			setDisplayUserInfos(false);
-		}
+		setDisplayUserInfos((previousValue)=>!previousValue);	
 	};
 	//DISPLAY SKILLS INFOS
 	const [displaySkills, setDisplaySkills] = useState(false);
 	const handleSkillsInfos = () => {
-		if (displaySkills === false) {
-			setDisplaySkills(true);
-		} else {
-			setDisplaySkills(false);
-		}
+		setDisplaySkills((previousValue)=>!previousValue);
 	};
 	return (
 		<div className="App">
@@ -45,13 +37,12 @@ function App() {
 					Je renseigne mes informations personnelles
 				</RadioButton>
 
-				{displayUserInfos === true ? (
+				{displayUserInfos && (
 					<>
 						<UserInfosForm userData={userData} setUserData={setUserData} />
 						<DisplayUser userData={userData} setUserData={setUserData} />
 					</>
-				) : (
-					<></>
+				
 				)}
 				{/*BUTTON TO DISPLAY SKILLS INFOS INPUTS*/}
 				<RadioButton
@@ -60,7 +51,7 @@ function App() {
 				>
 					Je renseigne mes compétences
 				</RadioButton>
-				{displaySkills === true ? (
+				{displaySkills && (
 					<>
 						<SkillsInfosForm 
 							frontEndSkills={frontEndSkills} 
@@ -69,8 +60,6 @@ function App() {
 							setBackEndSkills={setBackEndSkills}
 						/>
 					</>
-				) : (
-					<></>
 				)}
 				<DisplaySkills frontEndSkills={frontEndSkills} backEndSkills={backEndSkills}/>				
 			</form>
