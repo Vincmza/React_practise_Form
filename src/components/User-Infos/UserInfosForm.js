@@ -6,10 +6,15 @@ function UserInfosForm({userData, setUserData}) {
 		setUserData((pv) => ({ ...pv, [e.target.name]: e.target.value }));
 	};
 	const handleBirth = (e) => {
-		let str = e.target.value;
-		const date = new Date(str);
-		const options = { year: "numeric", month: "long", day: "numeric" };
-		setUserData(pv=>({...pv, [e.target.name] : date.toLocaleDateString("fr-FR", options)}))
+		const months = {"01" : "Janvier", "02" : "Février", "03" : "Mars", "04" :"Avril", "05":"Mai", "06":"Juin", "07":"Juillet", "08":"Août", "09":"Septembre", "10":"Octobre", "11":"Novembre", "12":"Décembre"}
+		let month = ""
+		let str = e.target.value.split("-").reverse()
+		for (const [key, value] of Object.entries(months)) {
+			if(key === str[1]){
+				month = str.join("-").replace(`-${key}-`, ` ${value} `)
+			}
+		}
+		setUserData(pv=>({...pv, [e.target.name]:month}))		
 	};
 	return (
 		<div>
@@ -21,7 +26,7 @@ function UserInfosForm({userData, setUserData}) {
 				Prénom
 			</Field>
 
-			<BirthDate name="Date de naissance" onChange={handleBirth} value={userData.length === 0 ? "" : userData["Date de naissance"]} required>
+			<BirthDate name="Date de naissance" onChange={handleBirth} value={userData.length === 0 ? "" : null }required>
 				Date de naissance
 			</BirthDate>
 
