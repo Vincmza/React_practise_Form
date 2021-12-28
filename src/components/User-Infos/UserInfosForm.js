@@ -26,7 +26,7 @@ function UserInfosForm({userData, setUserData}) {
 				Prénom
 			</Field>
 
-			<BirthDate name="Date de naissance" onChange={handleBirth} value={userData.length === 0 ? "" : null }required>
+			<BirthDate name="Date de naissance" onChange={handleBirth} value={userData.length === 0 ? "" : null}required>
 				Date de naissance
 			</BirthDate>
 

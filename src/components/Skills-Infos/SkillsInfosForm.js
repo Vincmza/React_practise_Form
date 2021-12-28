@@ -3,21 +3,26 @@ import { SkillInput } from "./Inputs";
 
 const SkillsInfosForm = ({frontEndSkills, setFrontEndSkills, backEndSkills, setBackEndSkills}) => {
 	//STORING FRONT END SKILLS
+
 	const handleCheckFront = (e)=>{
 		if(e.target.checked === true){
-			setFrontEndSkills(previousValue=>([...previousValue, e.target.value]))
+			if(frontEndSkills.includes(e.target.value)===false){
+				setFrontEndSkills(previousValue=>([...previousValue, e.target.value]))
+			}			
 		}
 		else {
 			const array = [...frontEndSkills]
 			const index = array.indexOf(e.target.value)
 			array.splice(index,1)
-			setFrontEndSkills(array)		
+			setFrontEndSkills(array)	
 		}
 	}
 	//STORING BACKEND SKILLS
 	const handleCheckBack = (e)=>{
 		if(e.target.checked === true){
-			setBackEndSkills(previousValue=>([...previousValue, e.target.value]))
+			if(backEndSkills.includes(e.target.value === false)){
+				setBackEndSkills(previousValue=>([...previousValue, e.target.value]))
+			}			
 		}
 		else {
 			const array = [...backEndSkills]
@@ -35,6 +40,7 @@ const SkillsInfosForm = ({frontEndSkills, setFrontEndSkills, backEndSkills, setB
 					name="html"
 					value="HTML"
                     onChange={handleCheckFront}
+					
 				>
 					HTML5
 				</SkillInput>
