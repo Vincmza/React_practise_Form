@@ -29,7 +29,7 @@ const DisplayUser = ({ userData, setUserData }) => {
 	};
 	return (
 		<div>
-			{isValid === false ? (
+			{isValid === false && user.length>0 ? (
 				<>
 					<button type="button" onClick={handleClick}>
 						Récapitulatif de mes infos
@@ -39,7 +39,7 @@ const DisplayUser = ({ userData, setUserData }) => {
 				<></>
 			)}
 
-			{isValid === true ? (
+			{isValid === true && user.length > 0 ? (
 				<>
 					<ul>
 						{user.map((user, index) => (
