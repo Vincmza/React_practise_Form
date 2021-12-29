@@ -9,11 +9,10 @@ import Validation from "./components/Validation";
 
 import "./App.css";
 
-
-
 function App() {
 	//STORE USER INFOS
-	const [userData, setUserData] = useState([]);
+	const objectData = {"Nom": "", "Prénom": "", "Date de naissance": "", "email": "", "Téléphone":"", "Lien Github ou Gitlab":""}
+	const [userData, setUserData] = useState(objectData);
 	//STORE FRONTEND SKILLS
 	const [frontEndSkills, setFrontEndSkills] = useState([])
 	//STORE BACKEND SKILLS
@@ -45,7 +44,7 @@ function App() {
 						<UserInfosForm userData={userData} setUserData={setUserData} />
 					</>				
 				)}
-				<DisplayUser userData={userData} setUserData={setUserData} />
+				<DisplayUser userData={userData} setUserData={setUserData} objectData={objectData} />
 				{/*BUTTON TO DISPLAY SKILLS INFOS INPUTS*/}
 				<RadioButton
 					onClick={() => handleSkillsInfos()}

@@ -2,6 +2,7 @@ import { Field, BirthDate, Email, Phone, GitHub } from "./Inputs";
 import React from "react";
 
 function UserInfosForm({ userData, setUserData }) {
+	
 	const handleChange = (e) => {
 		setUserData((pv) => ({ ...pv, [e.target.name]: e.target.value }));
 	};
@@ -52,7 +53,7 @@ function UserInfosForm({ userData, setUserData }) {
 			<BirthDate
 				name="Date de naissance"
 				onChange={handleBirth}
-				value={userData.length === 0 ? "" : null}
+				value={userData["Date de naissance"] === "" ? "" : null}
 				required
 			>
 				Date de naissance

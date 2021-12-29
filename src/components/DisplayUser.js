@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 
-const DisplayUser = ({ userData, setUserData }) => {
+const DisplayUser = ({ userData, setUserData, objectData }) => {
 	//GETTING AN ARRAY OF DATA INSTEAD OF AN OBJECT TO BE ABLE TO USE MAP
 	const user = [];
 	const objectToArray = () => {
@@ -23,13 +23,13 @@ const DisplayUser = ({ userData, setUserData }) => {
 		if (isValid === false) {
 			setIsValid(true);
 		} else {
-            setUserData([]);
+            setUserData(objectData);
 			setIsValid(false);			
 		}
 	};
 	return (
 		<div>
-			{isValid === false && user.length >= 4 ? (
+			{isValid === false && Object.values(userData).slice(0,4).filter(item=> item != "").length === 4 ? (
 				<>
 					<button type="button" onClick={handleClick}>
 						Récapitulatif de mes infos
@@ -47,10 +47,12 @@ const DisplayUser = ({ userData, setUserData }) => {
 							<li key={index} value={user}>
 								{user}
 							</li>
+							
 						))}
 					</ul>
 					<span onClick={handleClick}>
-						<FaRegTrashAlt />
+						Effacer les données
+						<FaRegTrashAlt/>
 					</span>
 				</>
 			) : (
