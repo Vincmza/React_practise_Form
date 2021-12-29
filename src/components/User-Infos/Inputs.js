@@ -10,7 +10,8 @@ export function Field({ name, value, onChange, children }) {
 				id={name}
 				name={name}
 				className="form-control"
-				pattern="[a-zA-Z-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ]{1,}"
+				pattern="[a-zA-Z-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{1,}"
+				placeholder={name}
 				required
 			/>
 		</div>
@@ -18,6 +19,17 @@ export function Field({ name, value, onChange, children }) {
 }
 //BIRTHDATE INPUT (CALENDAR TYPE)
 export function BirthDate({ name, value, onChange, children }) {
+	let today = new Date();
+	let dd = today.getDate();
+	let mm = today.getMonth() + 1; //January is 0!
+	let yyyy = today.getFullYear();
+	if (dd < 10) {
+		dd = "0" + dd;
+	}
+	if (mm < 10) {
+		mm = "0" + mm;
+	}
+	today = yyyy + "-" + mm + "-" + dd;
 	return (
 		<div>
 			<label htmlFor={name}>{children}</label>
@@ -27,6 +39,7 @@ export function BirthDate({ name, value, onChange, children }) {
 				onChange={onChange}
 				id={name}
 				name={name}
+				max={today}
 				className="form-birthdate"
 				required
 			/>
@@ -45,6 +58,7 @@ export function Email({ name, value, onChange, children }) {
 				id={name}
 				name={name}
 				className="form-email"
+				placeholder="example@gmail.com"
 				required
 			/>
 		</div>
@@ -62,7 +76,8 @@ export function Phone({ name, value, onChange, children }) {
 				id={name}
 				name={name}
 				className="form-phone"
-				pattern="[0-9]{10}"
+				pattern="^(0)([0-9]){9}$"
+				placeholder="0682357322 facultatif"
 			/>
 		</div>
 	);
@@ -80,6 +95,7 @@ export function GitHub({ name, value, onChange, children }) {
 				name={name}
 				className="form-url"
 				pattern="https://.*"
+				placeholder="https:// facultatif"
 			/>
 		</div>
 	);

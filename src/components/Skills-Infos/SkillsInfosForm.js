@@ -17,14 +17,14 @@ const SkillsInfosForm = ({
 		{ id: "Ember", label: "Ember", type: "frontend" },
 	];
 	const availableBackSkills = [
-		{id:"PHP", label:"PHP", type:"backend"},
-		{id:"Ruby", label:"Ruby", type:"backend"},
-		{id:"Symphony", label:"Symphony", type:"backend"},
-		{id:"Node.js", label:"Node.js", type:"backend"},
-		{id:"Python", label:"Python", type:"backend"},
-		{id:"SQL", label:"SQL", type:"backend"},
-		{id:"Sequelize", label:"Sequelize", type:"backend"},
-		{id:"PostgreSQL", label:"PostegreSQL", type:"backend"}
+		{ id: "PHP", label: "PHP", type: "backend" },
+		{ id: "Ruby", label: "Ruby", type: "backend" },
+		{ id: "Symphony", label: "Symphony", type: "backend" },
+		{ id: "Node.js", label: "Node.js", type: "backend" },
+		{ id: "Python", label: "Python", type: "backend" },
+		{ id: "SQL", label: "SQL", type: "backend" },
+		{ id: "Sequelize", label: "Sequelize", type: "backend" },
+		{ id: "PostgreSQL", label: "PostegreSQL", type: "backend" },
 	];
 	//STORING FRONT END SKILLS
 	const handleCheckFront = (e) => {
@@ -42,7 +42,7 @@ const SkillsInfosForm = ({
 	//STORING BACKEND SKILLS
 	const handleCheckBack = (e) => {
 		if (e.target.checked === true) {
-			if (backEndSkills.includes(e.target.value === false)) {
+			if (backEndSkills.includes(e.target.value)=== false) {
 				setBackEndSkills((previousValue) => [...previousValue, e.target.value]);
 			}
 		} else {
@@ -76,11 +76,11 @@ const SkillsInfosForm = ({
 						name={skill.type}
 						value={skill.id}
 						onChange={handleCheckBack}
-						checked={frontEndSkills.includes(skill.id)}
+						checked={backEndSkills.includes(skill.id)}
 					>
 						{skill.label}
 					</SkillInput>
-				))}				
+				))}
 			</div>
 		</div>
 	);

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 //components
+import { RadioButton } from "./components/User-Infos/Inputs";
 import UserInfosForm from "./components/User-Infos/UserInfosForm";
 import SkillsInfosForm from "./components/Skills-Infos/SkillsInfosForm";
 import DisplaySkills from "./components/DisplaySkills";
 import DisplayUser from "./components/DisplayUser";
-import { RadioButton } from "./components/User-Infos/Inputs";
+import Validation from "./components/Validation";
+
 import "./App.css";
+
 
 
 function App() {
@@ -40,10 +43,9 @@ function App() {
 				{displayUserInfos && (
 					<>
 						<UserInfosForm userData={userData} setUserData={setUserData} />
-						<DisplayUser userData={userData} setUserData={setUserData} />
-					</>
-				
+					</>				
 				)}
+				<DisplayUser userData={userData} setUserData={setUserData} />
 				{/*BUTTON TO DISPLAY SKILLS INFOS INPUTS*/}
 				<RadioButton
 					onClick={() => handleSkillsInfos()}
@@ -61,7 +63,8 @@ function App() {
 						/>
 					</>
 				)}
-				<DisplaySkills frontEndSkills={frontEndSkills} backEndSkills={backEndSkills}/>				
+				<DisplaySkills frontEndSkills={frontEndSkills} backEndSkills={backEndSkills}/>
+				<Validation user={userData} front={frontEndSkills} back={backEndSkills}/>
 			</form>
 		</div>
 	);
