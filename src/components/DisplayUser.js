@@ -7,7 +7,7 @@ const DisplayUser = ({ userData, setUserData, objectData }) => {
 	const objectToArray = () => {
 		for (const [key, value] of Object.entries(userData)) {
 			if (value === "") {
-				user.push(`${key}: champ non renseigné`);
+				user.push(`${key}: non renseigné`);
 			} else {
 				user.push(`${key}: ${value}`);
 			}
