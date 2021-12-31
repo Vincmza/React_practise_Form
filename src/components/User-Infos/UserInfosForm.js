@@ -36,6 +36,8 @@ function UserInfosForm({ userData, setUserData }) {
 				name="Nom"
 				onChange={handleChange}
 				value={userData.length === 0 ? "" : userData["Nom"]}
+				minLength={2}
+				maxLength={30}
 				required
 			>
 				Nom
@@ -45,6 +47,8 @@ function UserInfosForm({ userData, setUserData }) {
 				name="Prénom"
 				onChange={handleChange}
 				value={userData.length === 0 ? "" : userData["Prénom"]}
+				minLength={2}
+				maxLength={30}
 				required
 			>
 				Prénom
@@ -54,6 +58,7 @@ function UserInfosForm({ userData, setUserData }) {
 				name="Date de naissance"
 				onChange={handleBirth}
 				value={userData["Date de naissance"] === "" ? "" : null}
+				minLength={"1922-01-01"}
 				required
 			>
 				Date de naissance
@@ -63,6 +68,8 @@ function UserInfosForm({ userData, setUserData }) {
 				name="email"
 				onChange={handleChange}
 				value={userData.length === 0 ? "" : userData["email"]}
+				minLength={10}
+				maxLength={80}
 				required
 			>
 				Email

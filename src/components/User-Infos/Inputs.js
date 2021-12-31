@@ -1,5 +1,6 @@
 //LASTNAME AND FIRSTNAME INPUTS
-export function Field({ name, value, onChange, children }) {
+export function Field({ name, value, onChange, children, minLength, maxLength }) {
+	
 	return (
 		<div>
 			<label htmlFor={name}>{children}</label>
@@ -12,13 +13,15 @@ export function Field({ name, value, onChange, children }) {
 				className="form-control"
 				pattern="[a-zA-Z-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{1,}"
 				placeholder={name}
+				minLength={minLength}
+				maxLength={maxLength}
 				required
 			/>
 		</div>
 	);
 }
 //BIRTHDATE INPUT (CALENDAR TYPE)
-export function BirthDate({ name, value, onChange, children }) {
+export function BirthDate({ name, value, onChange, children, minLength }) {
 	let today = new Date();
 	let dd = today.getDate().toString().padStart(2,"0");
 	let mm = (today.getMonth()+ 1).toString().padStart(2,"0") ; //January is 0!
@@ -34,6 +37,7 @@ export function BirthDate({ name, value, onChange, children }) {
 				id={name}
 				name={name}
 				max={today}
+				min={minLength}
 				className="form-birthdate"
 				required
 			/>
@@ -41,7 +45,7 @@ export function BirthDate({ name, value, onChange, children }) {
 	);
 }
 //EMAIL INPUT
-export function Email({ name, value, onChange, children }) {
+export function Email({ name, value, onChange, children, minLength, maxLength }) {
 	return (
 		<div>
 			<label htmlFor={name}>{children}</label>
@@ -53,6 +57,8 @@ export function Email({ name, value, onChange, children }) {
 				name={name}
 				className="form-email"
 				placeholder="example@gmail.com"
+				minLength={minLength}
+				maxLength={maxLength}
 				required
 			/>
 		</div>
