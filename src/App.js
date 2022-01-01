@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 //components
 // import { RadioButton } from "./components/User-Infos/Inputs";
 // import UserInfosForm from "./components/User-Infos/UserInfosForm";
@@ -14,9 +14,20 @@ function App() {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors, isSubmitting },
+		setValue,
+		formState: { errors, isSubmitting, isDirty },
 	} = useForm({
 		mode: "onTouched",
+		defaultValues: {
+			yourDetails :{
+				nom:"",
+				prénom:"",
+				email:"",
+				birthday:"",
+				téléphone:"",
+				lien:""
+			}
+		}
 	});
 	const onSubmit = (data) => {
 		console.log("onSubmit :", data);
@@ -34,18 +45,15 @@ function App() {
 			"11": "Novembre",
 			"12": "Décembre",
 		};
-		let newData = ""
-		const bDay = data.birthday.split("-").reverse()
+		let newData = "";
+		const bDay = data.yourDetails.birthday.split("-").reverse();
 		for (const [key, value] of Object.entries(months)) {
 			if (key === bDay[1]) {
 				newData = bDay.join("-").replace(`-${key}-`, ` ${value} `);
-				data.birthday = newData
-			}			
-		}
-		console.log(data.birthday);		
-	} 
-
-	console.log(errors);
+			}
+		};
+		setValue("yourDetails.birthday", newData)
+	};
 	//STORE USER INFOS
 	// const objectData = {"Nom": "", "Prénom": "", "Date de naissance": "", "email": "", "Téléphone":"", "Lien Github ou Gitlab":""}
 	// const [userData, setUserData] = useState(objectData);
@@ -99,21 +107,30 @@ function App() {
 			},
 		};
 	}
-	function birthDay (msg){
+	function birthDay(msg) {
 		let today = new Date();
-		let dd = today.getDate().toString().padStart(2,"0");
-		let mm = (today.getMonth()+ 1).toString().padStart(2,"0") ; //January is 0!
+		let dd = today.getDate().toString().padStart(2, "0");
+		let mm = (today.getMonth() + 1).toString().padStart(2, "0"); //January is 0!
 		let yyyy = today.getFullYear();
 		today = yyyy + "-" + mm + "-" + dd;
+
 		return {
 			required: `Votre ${msg} est obligatoire`,
 			max: {
 				value: today,
-				message: "La date sélectionnée ne peut pas dépasser la date d'aujourd'hui"
+				message: "La date sélectionnée ne peut pas dépasser la date d'aujourd'hui",
 			},
 			min: {
 				value: "1945-01-01",
-				message: "La date sélectionnée doit être égale ou supérieure au 1er Janvier 1945"
+				message: "La date sélectionnée doit être égale ou supérieure au 1er Janvier 1945",
+			},
+		};
+	}
+	function phone (){
+		return {
+			pattern: {
+				value: /^(0)([0-9]){9}$/,
+				message: "Votre numéro de téléphone doit être composé de chiffres uniquement"
 			}
 		}
 	}
@@ -136,7 +153,7 @@ function App() {
 						name={"nom"}
 						className="form-lastname"
 						placeholder={"Nom"}
-						{...register("nom", name("nom"))}
+						{...register("yourDetails.nom", name("nom"))}
 					/>
 					{errors.nom && <span>{errors.nom.message}</span>}
 					<label htmlFor={"prénom"}>Prénom</label>
@@ -146,7 +163,7 @@ function App() {
 						name={"prénom"}
 						className="form-firstname"
 						placeholder={"Prénom"}
-						{...register("prénom", name("prénom"))}
+						{...register("yourDetails.prénom", name("prénom"))}
 					/>
 					{errors.prénom && <span>{errors.prénom.message}</span>}
 					<label htmlFor={"email"}>email</label>
@@ -156,7 +173,7 @@ function App() {
 						name={"email"}
 						className="form-email"
 						placeholder={"votre@email.com"}
-						{...register("email", email("email"))}
+						{...register("yourDetails.email", email("email"))}
 					/>
 					{errors.email && <span>{errors.email.message}</span>}
 
@@ -166,8 +183,20 @@ function App() {
 						id={"birthday"}
 						name={"birthday"}
 						className="form-birthdate"
-						{...register("birthday",birthDay("date de naissance"))}
+						{...register("yourDetails.birthday", birthDay("date de naissance"))}
 					/>
+					{errors.birthday && <span>{errors.birthday.message}</span>}
+
+					<label htmlFor={"téléphone"}>Téléphone</label>
+					<input
+						type="tel"
+						id={"téléphone"}
+						name={"téléphone"}
+						className="form-phone"
+						placeholder="0682357322 facultatif"
+						{...register("yourDetails.téléphone", phone())}
+					/>
+					{errors.téléphone && <span>{errors.téléphone.message}</span>}
 
 					{/* <UserInfosForm userData={userData} setUserData={setUserData} /> */}
 				</div>
