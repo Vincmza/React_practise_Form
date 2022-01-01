@@ -11,8 +11,40 @@ import { useForm } from "react-hook-form";
 import "./App.css";
 
 function App() {
-	const { register, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm();
-  	const onSubmit = data => console.log("onSubmit :", data);
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isSubmitting },
+	} = useForm({
+		mode: "onTouched",
+	});
+	const onSubmit = (data) => {
+		console.log("onSubmit :", data);
+		const months = {
+			"01": "Janvier",
+			"02": "Février",
+			"03": "Mars",
+			"04": "Avril",
+			"05": "Mai",
+			"06": "Juin",
+			"07": "Juillet",
+			"08": "Août",
+			"09": "Septembre",
+			"10": "Octobre",
+			"11": "Novembre",
+			"12": "Décembre",
+		};
+		let newData = ""
+		const bDay = data.birthday.split("-").reverse()
+		for (const [key, value] of Object.entries(months)) {
+			if (key === bDay[1]) {
+				newData = bDay.join("-").replace(`-${key}-`, ` ${value} `);
+				data.birthday = newData
+			}			
+		}
+		console.log(data.birthday);		
+	} 
+
 	console.log(errors);
 	//STORE USER INFOS
 	// const objectData = {"Nom": "", "Prénom": "", "Date de naissance": "", "email": "", "Téléphone":"", "Lien Github ou Gitlab":""}
@@ -25,16 +57,67 @@ function App() {
 	//DISPLAY USER INFOS INPUTS
 	const [displayUserInfos, setDisplayUserInfos] = useState(false);
 	const displayInputs = () => {
-		setDisplayUserInfos(previousValue=>!previousValue);
+		setDisplayUserInfos((previousValue) => !previousValue);
 	};
 	//DISPLAY SKILLS INFOS
 	// const [displaySkills, setDisplaySkills] = useState(false);
 	// const handleSkillsInfos = () => {
 	// 	setDisplaySkills((previousValue)=>!previousValue);
 	// };
-	function settings (msg, max, min){
-		return {required:msg, maxLength:max, minLength:min}
+	function name(msg) {
+		return {
+			required: `Votre ${msg} est indispensable`,
+			maxLength: {
+				value: 30,
+				message: "Ce champ doit contenir au maximum 30 caractères ",
+			},
+			minLength: {
+				value: 2,
+				message: "Ce champ doit contenir au minimum 2 caractères",
+			},
+			pattern: {
+				value: /[a-zA-Z-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ'_ ]{1,}/,
+				message: "Ce champ ne peut pas contenir de chiffres",
+			},
+		};
 	}
+	function email(msg) {
+		return {
+			required: `Votre ${msg} est indispensable`,
+			maxLength: {
+				value: 80,
+				message: "Votre email doit contenir au maximum 80 caractères ",
+			},
+			minLength: {
+				value: 10,
+				message: "Votre email doit contenir au minimum 10 caractères",
+			},
+			pattern: {
+				value: /[^@][a-z][.][a-z]/,
+				message:
+					"Votre email doit contenir un @ pour être validé et terminer convenablement (exemple : gmail.com, outlook.fr)",
+			},
+		};
+	}
+	function birthDay (msg){
+		let today = new Date();
+		let dd = today.getDate().toString().padStart(2,"0");
+		let mm = (today.getMonth()+ 1).toString().padStart(2,"0") ; //January is 0!
+		let yyyy = today.getFullYear();
+		today = yyyy + "-" + mm + "-" + dd;
+		return {
+			required: `Votre ${msg} est obligatoire`,
+			max: {
+				value: today,
+				message: "La date sélectionnée ne peut pas dépasser la date d'aujourd'hui"
+			},
+			min: {
+				value: "1945-01-01",
+				message: "La date sélectionnée doit être égale ou supérieure au 1er Janvier 1945"
+			}
+		}
+	}
+
 	return (
 		<div className="App">
 			<form className="form-container" onSubmit={handleSubmit(onSubmit)}>
@@ -44,41 +127,50 @@ function App() {
 					checked={true}
 				>
 					Je renseigne mes informations personnelles
-				</RadioButton> */}			
+				</RadioButton> */}
 				<div>
-					<label htmlFor={"Nom"}>Nom</label>
+					<label htmlFor={"nom"}>Nom</label>
 					<input
 						type="text"
-						id={"Nom"}
-						name={"Nom"}
+						id={"nom"}
+						name={"nom"}
 						className="form-lastname"
-						pattern="[a-zA-Z-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{1,}"
 						placeholder={"Nom"}
-						{...register("Nom",settings("Votre nom est obligatoire", 30, 2),{pattern:/[a-zA-Z-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{1,}/})}
+						{...register("nom", name("nom"))}
 					/>
-					<label htmlFor={"Prénom"}>Prénom</label>
+					{errors.nom && <span>{errors.nom.message}</span>}
+					<label htmlFor={"prénom"}>Prénom</label>
 					<input
 						type="text"
-						id={"Prénom"}
-						name={"Prénom"}
+						id={"prénom"}
+						name={"prénom"}
 						className="form-firstname"
-						pattern="[a-zA-Z-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{1,}"
 						placeholder={"Prénom"}
-						{...register("Prénom",settings("Vote prénom est obligatoire", 30, 2), {pattern:/[a-zA-Z-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{1,}/})}
+						{...register("prénom", name("prénom"))}
 					/>
-					{errors.Prénom && <span>{errors.Prénom.message}</span> }
+					{errors.prénom && <span>{errors.prénom.message}</span>}
 					<label htmlFor={"email"}>email</label>
 					<input
-						type="email"
+						type="text"
 						id={"email"}
 						name={"email"}
 						className="form-email"
 						placeholder={"votre@email.com"}
-						{...register("email",settings("email obligatoire", 80, 10))}
+						{...register("email", email("email"))}
+					/>
+					{errors.email && <span>{errors.email.message}</span>}
+
+					<label htmlFor={"birthday"}>Anniversaire</label>
+					<input
+						type="date"
+						id={"birthday"}
+						name={"birthday"}
+						className="form-birthdate"
+						{...register("birthday",birthDay("date de naissance"))}
 					/>
 
 					{/* <UserInfosForm userData={userData} setUserData={setUserData} /> */}
-				</div>							
+				</div>
 				{/* <DisplayUser userData={userData} setUserData={setUserData} objectData={objectData} /> */}
 				{/*BUTTON TO DISPLAY SKILLS INFOS INPUTS*/}
 				{/* <RadioButton
@@ -99,7 +191,7 @@ function App() {
 				)}
 				<DisplaySkills frontEndSkills={frontEndSkills} backEndSkills={backEndSkills}/> */}
 				{/* <Validation user={userData} front={frontEndSkills} back={backEndSkills}/> */}
-				<input disabled={isSubmitting} type="submit" value="Valider"/>
+				<input disabled={isSubmitting} type="submit" value="Valider" />
 			</form>
 		</div>
 	);
