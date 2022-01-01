@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 //components
 // import { RadioButton } from "./components/User-Infos/Inputs";
 // import UserInfosForm from "./components/User-Infos/UserInfosForm";
@@ -15,19 +15,20 @@ function App() {
 		register,
 		handleSubmit,
 		setValue,
+		getValues,
 		formState: { errors, isSubmitting, isDirty },
 	} = useForm({
 		mode: "onTouched",
 		defaultValues: {
-			yourDetails :{
-				nom:"",
-				prénom:"",
-				email:"",
-				birthday:"",
-				téléphone:"",
-				lien:""
-			}
-		}
+			yourDetails: {
+				nom: "",
+				prénom: "",
+				email: "",
+				birthday: "",
+				téléphone: "",
+				lien: "",
+			},
+		},
 	});
 	const onSubmit = (data) => {
 		console.log("onSubmit :", data);
@@ -41,9 +42,9 @@ function App() {
 			"07": "Juillet",
 			"08": "Août",
 			"09": "Septembre",
-			"10": "Octobre",
-			"11": "Novembre",
-			"12": "Décembre",
+			10: "Octobre",
+			11: "Novembre",
+			12: "Décembre",
 		};
 		let newData = "";
 		const bDay = data.yourDetails.birthday.split("-").reverse();
@@ -51,8 +52,8 @@ function App() {
 			if (key === bDay[1]) {
 				newData = bDay.join("-").replace(`-${key}-`, ` ${value} `);
 			}
-		};
-		setValue("yourDetails.birthday", newData)
+		}
+		setValue("yourDetails.birthday", newData);
 	};
 	//STORE USER INFOS
 	// const objectData = {"Nom": "", "Prénom": "", "Date de naissance": "", "email": "", "Téléphone":"", "Lien Github ou Gitlab":""}
@@ -126,15 +127,23 @@ function App() {
 			},
 		};
 	}
-	function phone (){
+	function phone() {
 		return {
 			pattern: {
 				value: /^(0)([0-9]){9}$/,
-				message: "Votre numéro de téléphone doit être composé de chiffres uniquement"
+				message: "Votre numéro de téléphone doit être composé de chiffres uniquement",
+			},
+		};
+	}
+	function link(){
+		return {
+			pattern : {
+				value: /^(https)\/\/:/,
+				message:"Ceci n'est pas une url"
 			}
 		}
 	}
-
+	console.log(errors);
 	return (
 		<div className="App">
 			<form className="form-container" onSubmit={handleSubmit(onSubmit)}>
@@ -198,6 +207,16 @@ function App() {
 					/>
 					{errors.téléphone && <span>{errors.téléphone.message}</span>}
 
+					<label htmlFor={name}>Lien</label>
+					<input
+						type="text"
+						id={"lien"}
+						name={"lien"}
+						className="form-url"
+						placeholder="https:// facultatif"
+						{...register("yourDetails.lien", link())}
+					/>
+					{errors.yourDetails.lien && <span>{errors.yourDetails.lien.message}</span>}
 					{/* <UserInfosForm userData={userData} setUserData={setUserData} /> */}
 				</div>
 				{/* <DisplayUser userData={userData} setUserData={setUserData} objectData={objectData} /> */}
