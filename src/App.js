@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
+import styledComponents from "styled-components";
 //components
 // import { RadioButton } from "./components/User-Infos/Inputs";
 // import UserInfosForm from "./components/User-Infos/UserInfosForm";
@@ -9,25 +10,39 @@ import { useForm } from "react-hook-form";
 // import Validation from "./components/Validation";
 
 import "./App.css";
+const Input = styledComponents.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin:auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width:35%;
+`
+const InputContainer = styledComponents.div`
+	margin:auto;
+	margin-top:100px;
+	width:50%;
+	height:auto;
+	border:1px solid red;
+`
+
 
 function App() {
 	const {
 		register,
 		handleSubmit,
 		setValue,
-		getValues,
-		formState: { errors, isSubmitting, isDirty },
+		formState: { errors, isSubmitting },
 	} = useForm({
 		mode: "onTouched",
-		defaultValues: {
-			yourDetails: {
-				nom: "",
-				prénom: "",
-				email: "",
-				birthday: "",
-				téléphone: "",
-				lien: "",
-			},
+		defaultValues: {	 
+			nom: "",
+			prénom: "",
+			email: "",
+			birthday: "",
+			téléphone: "",
+			lien: "",
 		},
 	});
 	const onSubmit = (data) => {
@@ -42,18 +57,18 @@ function App() {
 			"07": "Juillet",
 			"08": "Août",
 			"09": "Septembre",
-			10: "Octobre",
-			11: "Novembre",
-			12: "Décembre",
+			"10": "Octobre",
+			"11": "Novembre",
+			"12": "Décembre",
 		};
 		let newData = "";
-		const bDay = data.yourDetails.birthday.split("-").reverse();
+		const bDay = data.birthday.split("-").reverse();
 		for (const [key, value] of Object.entries(months)) {
 			if (key === bDay[1]) {
 				newData = bDay.join("-").replace(`-${key}-`, ` ${value} `);
 			}
 		}
-		setValue("yourDetails.birthday", newData);
+		setValue("defaultValues.birthday", newData);
 	};
 	//STORE USER INFOS
 	// const objectData = {"Nom": "", "Prénom": "", "Date de naissance": "", "email": "", "Téléphone":"", "Lien Github ou Gitlab":""}
@@ -64,10 +79,10 @@ function App() {
 	// const [backEndSkills, setBackEndSkills]= useState([])
 
 	//DISPLAY USER INFOS INPUTS
-	const [displayUserInfos, setDisplayUserInfos] = useState(false);
-	const displayInputs = () => {
-		setDisplayUserInfos((previousValue) => !previousValue);
-	};
+	// const [displayUserInfos, setDisplayUserInfos] = useState(false);
+	// const displayInputs = () => {
+	// 	setDisplayUserInfos((previousValue) => !previousValue);
+	// };
 	//DISPLAY SKILLS INFOS
 	// const [displaySkills, setDisplaySkills] = useState(false);
 	// const handleSkillsInfos = () => {
@@ -102,7 +117,7 @@ function App() {
 				message: "Votre email doit contenir au minimum 10 caractères",
 			},
 			pattern: {
-				value: /[^@][a-z][.][a-z]/,
+				value: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/,
 				message:
 					"Votre email doit contenir un @ pour être validé et terminer convenablement (exemple : gmail.com, outlook.fr)",
 			},
@@ -130,20 +145,24 @@ function App() {
 	function phone() {
 		return {
 			pattern: {
-				value: /^(0)([0-9]){9}$/,
-				message: "Votre numéro de téléphone doit être composé de chiffres uniquement",
+				value: /^(0)[0-9]{9}$/,
+				message: "Chiffres uniquement. Votre numéro doit commencer par un zéro",
+			},
+			maxLength: {
+				value: 10,
+				message: "10 chiffres maximum"
 			},
 		};
 	}
-	function link(){
+	function link() {
+		const regex = /^(https?\:)\/\/(([^:\/?#]*)(?:\:([0-9]+))?)([\/]{0,1}[^?#]*)(\?[^#]*|)(#.*|)$/
 		return {
-			pattern : {
-				value: /^(https)\/\/:/,
-				message:"Ceci n'est pas une url"
+			pattern: {
+				value: regex,
+				message: "Ceci n'est pas une url"
 			}
-		}
+		};
 	}
-	console.log(errors);
 	return (
 		<div className="App">
 			<form className="form-container" onSubmit={handleSubmit(onSubmit)}>
@@ -154,71 +173,85 @@ function App() {
 				>
 					Je renseigne mes informations personnelles
 				</RadioButton> */}
-				<div>
-					<label htmlFor={"nom"}>Nom</label>
-					<input
-						type="text"
-						id={"nom"}
-						name={"nom"}
-						className="form-lastname"
-						placeholder={"Nom"}
-						{...register("yourDetails.nom", name("nom"))}
-					/>
-					{errors.nom && <span>{errors.nom.message}</span>}
-					<label htmlFor={"prénom"}>Prénom</label>
-					<input
-						type="text"
-						id={"prénom"}
-						name={"prénom"}
-						className="form-firstname"
-						placeholder={"Prénom"}
-						{...register("yourDetails.prénom", name("prénom"))}
-					/>
-					{errors.prénom && <span>{errors.prénom.message}</span>}
-					<label htmlFor={"email"}>email</label>
-					<input
-						type="text"
-						id={"email"}
-						name={"email"}
-						className="form-email"
-						placeholder={"votre@email.com"}
-						{...register("yourDetails.email", email("email"))}
-					/>
-					{errors.email && <span>{errors.email.message}</span>}
+				<InputContainer className="input-container">
+					<Input className="input">
+						<label htmlFor={"nom"}>Nom</label>
+						<input
+							type="text"
+							id={"nom"}
+							name={"nom"}
+							className="form-lastname"
+							placeholder={"Nom"}
+							{...register("nom", name("nom"))}
+						/>
+						{errors.nom && <span>{errors.nom.message}</span>}
+					</Input>
+					<Input className="input">
+						<label htmlFor={"prénom"}>Prénom</label>
+						<input
+							type="text"
+							id={"prénom"}
+							name={"prénom"}
+							className="form-firstname"
+							placeholder={"Prénom"}
+							{...register("prénom", name("prénom"))}
+						/>
+						{errors.prénom && <span>{errors.prénom.message}</span>}
+					</Input>
 
-					<label htmlFor={"birthday"}>Anniversaire</label>
-					<input
-						type="date"
-						id={"birthday"}
-						name={"birthday"}
-						className="form-birthdate"
-						{...register("yourDetails.birthday", birthDay("date de naissance"))}
-					/>
-					{errors.birthday && <span>{errors.birthday.message}</span>}
+					<Input className="input">
+						<label htmlFor={"email"}>email</label>
+						<input
+							type="text"
+							id={"email"}
+							name={"email"}
+							className="form-email"
+							placeholder={"votre@email.com"}
+							{...register("email", email("email"))}
+						/>
+						{errors.email && <span>{errors.email.message}</span>}
+					</Input>
 
-					<label htmlFor={"téléphone"}>Téléphone</label>
-					<input
-						type="tel"
-						id={"téléphone"}
-						name={"téléphone"}
-						className="form-phone"
-						placeholder="0682357322 facultatif"
-						{...register("yourDetails.téléphone", phone())}
-					/>
-					{errors.téléphone && <span>{errors.téléphone.message}</span>}
+					<Input className="input">
+						<label htmlFor={"birthday"}>Anniversaire</label>
+						<input
+							type="date"
+							id={"birthday"}
+							name={"birthday"}
+							className="form-birthdate"
+							{...register("birthday", birthDay("date de naissance"))}
+						/>
+						{errors.birthday && <span>{errors.birthday.message}</span>}
+					</Input>
 
-					<label htmlFor={name}>Lien</label>
-					<input
-						type="text"
-						id={"lien"}
-						name={"lien"}
-						className="form-url"
-						placeholder="https:// facultatif"
-						{...register("yourDetails.lien", link())}
-					/>
-					{errors.yourDetails.lien && <span>{errors.yourDetails.lien.message}</span>}
+					<Input className="input">
+						<label htmlFor={"téléphone"}>Téléphone</label>
+						<input
+							type="text"
+							id={"téléphone"}
+							name={"téléphone"}
+							className="form-phone"
+							placeholder="06 ** ** ** ** facultatif"
+							{...register("téléphone", phone())}
+						/>
+						{errors.téléphone && <span>{errors.téléphone.message}</span>}
+					</Input>
+
+					<Input className="input">
+						<label htmlFor={"lien"}>Lien</label>
+						<input
+							type="tel"
+							id={"lien"}
+							name={"lien"}
+							className="form-url"
+							placeholder="https:// facultatif"
+							{...register("lien", link())}
+						/>
+						{errors.lien && <span>{errors.lien.message}</span>}
+					</Input>
+
 					{/* <UserInfosForm userData={userData} setUserData={setUserData} /> */}
-				</div>
+				</InputContainer>
 				{/* <DisplayUser userData={userData} setUserData={setUserData} objectData={objectData} /> */}
 				{/*BUTTON TO DISPLAY SKILLS INFOS INPUTS*/}
 				{/* <RadioButton
