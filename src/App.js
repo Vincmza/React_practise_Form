@@ -26,13 +26,10 @@ const InputContainer = styledComponents.div`
 	height:auto;
 	border:1px solid red;
 `
-
-
 function App() {
 	const {
 		register,
 		handleSubmit,
-		setValue,
 		formState: { errors, isSubmitting },
 	} = useForm({
 		mode: "onTouched",
@@ -66,9 +63,10 @@ function App() {
 		for (const [key, value] of Object.entries(months)) {
 			if (key === bDay[1]) {
 				newData = bDay.join("-").replace(`-${key}-`, ` ${value} `);
+				data.birthday = newData
 			}
 		}
-		setValue("defaultValues.birthday", newData);
+		// setValue(...data.birthday, newData);
 	};
 	//STORE USER INFOS
 	// const objectData = {"Nom": "", "Prénom": "", "Date de naissance": "", "email": "", "Téléphone":"", "Lien Github ou Gitlab":""}
