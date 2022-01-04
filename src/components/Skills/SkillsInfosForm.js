@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { SkillInput } from "./Inputs";
 
 const SkillsInfosForm = ({
@@ -26,6 +26,25 @@ const SkillsInfosForm = ({
 		{ id: "Sequelize", label: "Sequelize", type: "backend" },
 		{ id: "PostgreSQL", label: "PostegreSQL", type: "backend" },
 	];
+	//STATE ALLOWS TO EITHER DISPLAY OR HIDE SKILLS
+	const [displayListFront, setDisplayListFront]=useState(false);
+	const [displayListBack, setDisplayListBack]=useState(false);
+	//FUNCTION TO DISPLAY OR HIDE FRONT SKILLS
+	const handleListFront = ()=>{
+		if(displayListFront === false){
+			setDisplayListFront(true)
+		}else if(displayListFront === true){
+			setDisplayListFront(false)
+		}
+	}
+	//FUNCTION TO DISPLAY OR HIDE BACK SKILLS
+	const handleListBack = ()=>{
+		if(displayListBack === false){
+			setDisplayListBack(true)
+		} else if(displayListBack === true) {
+			setDisplayListBack(false)
+		}
+	}
 	//STORING FRONT END SKILLS
 	const handleCheckFront = (e) => {
 		if (e.target.checked === true) {
@@ -54,12 +73,18 @@ const SkillsInfosForm = ({
 	};
 	return (
 		<div>
-			<div className="frontend-skills-container">
-				<p>Compétences Frontend</p>
+			{displayListFront === false ? (<>
+				<h1>Compétences frontend</h1>
+				<input type="button" value="Afficher" onClick={handleListFront}/>
+			</>):(
+			<>
+				<h1>Compétences frontend</h1>
+				<input type="button" value="Masquer" onClick={handleListFront}/>
+				<div className="frontend-skills-container">
 				{availableFrontSkills.map((skill) => (
 					<SkillInput
 						key={skill.id}
-						name={skill.type}
+						name={skill.id}
 						value={skill.id}
 						onChange={handleCheckFront}
 						checked={frontEndSkills.includes(skill.id)}
@@ -68,12 +93,20 @@ const SkillsInfosForm = ({
 					</SkillInput>
 				))}
 			</div>
-			<div className="backend-skills-container">
-				<p>Compétences Backend</p>
+			</>)}
+			
+			{displayListBack === false ? (<>
+				<h1>Compétences backend</h1>
+				<input type="button" value="Afficher" onClick={handleListBack}/>
+			</>):(
+			<>
+				<h1>Compétences backend</h1>
+				<input type="button" value="Masquer" onClick={handleListBack}/>
+				<div className="backend-skills-container">
 				{availableBackSkills.map((skill) => (
 					<SkillInput
 						key={skill.id}
-						name={skill.type}
+						name={skill.id}
 						value={skill.id}
 						onChange={handleCheckBack}
 						checked={backEndSkills.includes(skill.id)}
@@ -82,6 +115,7 @@ const SkillsInfosForm = ({
 					</SkillInput>
 				))}
 			</div>
+			</>)}
 		</div>
 	);
 };
