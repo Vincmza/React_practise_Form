@@ -5,17 +5,25 @@ import "./index.css";
 //components
 import Confirmation from "./pages/Confirmation";
 import Presentation from "./pages/Presentation";
+import Error from "./components/Error/Error";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+//context
+import {FrontSkillsProvider, BackSkillsProvider} from "./context/index"
 
 ReactDOM.render(
 	<React.StrictMode>
 		<Router>
-      <Routes>
+    <FrontSkillsProvider>
+    <BackSkillsProvider>
+      <Routes>      
         <Route exact path="/" exact element={<Presentation />}/>
         <Route exact path="/form" exact element={<App />}/>
         <Route exact path="/confirm" exact element={<Confirmation/>}/>
+        <Route path="*" exact element={<Error/>}/>      
       </Routes>
+    </BackSkillsProvider>  
+    </FrontSkillsProvider> 
 		</Router>
 	</React.StrictMode>,
 	document.getElementById("root")

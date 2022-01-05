@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { SkillInput } from "./Inputs";
+import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
+
 
 const SkillsInfosForm = ({
-	frontEndSkills,
-	setFrontEndSkills,
-	backEndSkills,
-	setBackEndSkills,
+	// frontEndSkills,
+	// setFrontEndSkills,
+	// backEndSkills,
+	// setBackEndSkills,
+	
 }) => {
+	const {frontEndSkills, setFrontEndSkills}=useContext(FrontSkillsContext)
+	const {backEndSkills, setBackEndSkills}=useContext(BackSkillsContext)
+
+	console.log(frontEndSkills);
+
 	const availableFrontSkills = [
 		{ id: "HTML5", label: "HTML5", type: "frontend" },
 		{ id: "CSS3", label: "CSS3", type: "frontend" },
