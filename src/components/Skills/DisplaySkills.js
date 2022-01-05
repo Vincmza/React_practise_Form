@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
 
-const DisplaySkills = ({frontEndSkills, backEndSkills}) => {
+const DisplaySkills = () => {
+    const {frontEndSkills}=useContext(FrontSkillsContext)
+	const {backEndSkills}=useContext(BackSkillsContext)
 
     return (
         <div>

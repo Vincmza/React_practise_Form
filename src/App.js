@@ -10,19 +10,10 @@ import "./style/App.css";
 
 
 function App() {
-	// // STORE FRONTEND SKILLS
-	// const [frontEndSkills, setFrontEndSkills] = useState([]);
-	// // STORE BACKEND SKILLS
-	// const [backEndSkills, setBackEndSkills] = useState([]);
 	return (
 		<div className="App">
-			<SkillsInfosForm
-				// frontEndSkills={frontEndSkills}
-				// setFrontEndSkills={setFrontEndSkills}
-				// backEndSkills={backEndSkills}
-				// setBackEndSkills={setBackEndSkills}
-			/>
-			{/* <DisplaySkills frontEndSkills={frontEndSkills} backEndSkills={backEndSkills} /> */}
+			<SkillsInfosForm/>
+			<DisplaySkills/>
 			<UserForm/>
 		</div>
 	);
