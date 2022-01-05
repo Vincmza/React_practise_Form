@@ -23,5 +23,5 @@ height:auto;
 border:1px solid red;
 `;
 export const Validate = styledComponents.input`
-width:10%;
+width:auto;
 `;

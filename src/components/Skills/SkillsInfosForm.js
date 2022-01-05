@@ -31,19 +31,11 @@ const SkillsInfosForm = ({
 	const [displayListBack, setDisplayListBack]=useState(false);
 	//FUNCTION TO DISPLAY OR HIDE FRONT SKILLS
 	const handleListFront = ()=>{
-		if(displayListFront === false){
-			setDisplayListFront(true)
-		}else if(displayListFront === true){
-			setDisplayListFront(false)
-		}
+		setDisplayListFront((pv)=>!pv)
 	}
 	//FUNCTION TO DISPLAY OR HIDE BACK SKILLS
 	const handleListBack = ()=>{
-		if(displayListBack === false){
-			setDisplayListBack(true)
-		} else if(displayListBack === true) {
-			setDisplayListBack(false)
-		}
+		setDisplayListBack((pv)=>!pv)
 	}
 	//STORING FRONT END SKILLS
 	const handleCheckFront = (e) => {
