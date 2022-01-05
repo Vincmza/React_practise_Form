@@ -9,19 +9,21 @@ import Error from "./components/Error/Error";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 //context
-import {FrontSkillsProvider, BackSkillsProvider} from "./context/index"
+import {FrontSkillsProvider, BackSkillsProvider, UserContextProvider} from "./context/index"
 
 ReactDOM.render(
 	<React.StrictMode>
 		<Router>
     <FrontSkillsProvider>
     <BackSkillsProvider>
+    <UserContextProvider>
       <Routes>      
         <Route exact path="/" exact element={<Presentation />}/>
         <Route exact path="/form" exact element={<App />}/>
         <Route exact path="/confirm" exact element={<Confirmation/>}/>
         <Route path="*" exact element={<Error/>}/>      
       </Routes>
+    </UserContextProvider>
     </BackSkillsProvider>  
     </FrontSkillsProvider> 
 		</Router>

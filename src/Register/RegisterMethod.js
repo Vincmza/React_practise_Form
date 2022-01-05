@@ -58,9 +58,9 @@ export function phone() {
             value: /^(0)[0-9]{9}$/,
             message: "Chiffres uniquement. Votre numéro doit commencer par un zéro",
         },
-        maxLength: {
+        minLength: {
             value: 10,
-            message: "10 chiffres maximum"
+            message: "10 chiffres minimum"
         },
     };
 }

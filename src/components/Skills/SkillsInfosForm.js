@@ -12,9 +12,7 @@ const SkillsInfosForm = ({
 }) => {
 	const {frontEndSkills, setFrontEndSkills}=useContext(FrontSkillsContext)
 	const {backEndSkills, setBackEndSkills}=useContext(BackSkillsContext)
-
-	console.log(frontEndSkills);
-
+	
 	const availableFrontSkills = [
 		{ id: "HTML5", label: "HTML5", type: "frontend" },
 		{ id: "CSS3", label: "CSS3", type: "frontend" },

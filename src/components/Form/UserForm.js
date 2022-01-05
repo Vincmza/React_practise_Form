@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useContext}from "react";
 import { useForm } from "react-hook-form";
 //style
 import { Form, Input, InputContainer, Validate } from "../../style/AppStyle";
 //functions that return propertis of register method
 import { identity, email, birthDay, phone, link } from "../../register/RegisterMethod";
+//context
+import {UserContext} from "../../context/index"
+import { __PRIVATE__ } from "styled-components";
 
 const UserForm = () => {
 	const {
@@ -12,7 +15,7 @@ const UserForm = () => {
 		formState: { errors, isValid },
 	} = useForm({
 		mode: "onBlur",
-		userInfos: {
+		defaultValues: {
 			nom: "",
 			prenom: "",
 			email: "",
@@ -21,8 +24,9 @@ const UserForm = () => {
 			lien: "",
 		},
 	});
+	const {userData, setUserData}=useContext(UserContext)
 	const onSubmit = (data) => {
-		console.log("onSubmit :", data);
+		// console.log("onSubmit :", data);
 		const months = {
 			"01": "Janvier",
 			"02": "Février",
@@ -46,7 +50,9 @@ const UserForm = () => {
 				data.birthday = newData;
 			}
 		}
+		setUserData(data)
 	};
+	console.log(userData)
 	return (
 		<div>
 			<Form className="form-container" onSubmit={handleSubmit(onSubmit)}>
