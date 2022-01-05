@@ -2,13 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
+//components
+import Confirmation from "./pages/Confirmation";
+import Presentation from "./pages/Presentation";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
 	<React.StrictMode>
 		<Router>
-			<App />
+      <Routes>
+        <Route exact path="/" exact element={<Presentation />}/>
+        <Route exact path="/form" exact element={<App />}/>
+        <Route exact path="/confirm" exact element={<Confirmation/>}/>
+      </Routes>
 		</Router>
 	</React.StrictMode>,
 	document.getElementById("root")
