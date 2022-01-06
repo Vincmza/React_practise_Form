@@ -10,8 +10,8 @@ const DisplaySkills = () => {
 				<>
 					<p>Les technologies frontend que je connais :</p>
 					<ul className="front-skills-container">
-						{frontEndSkills.map((skill, index) => (
-							<li key={index} value={skill}>{skill.id}</li>
+						{frontEndSkills.map((skill) => (
+							<li key={skill.id} value={skill}>{skill.id}{skill.level === "" ? (<></>):(<> : {skill.level}</>)}</li>
 						))}
                         
 					</ul>
@@ -23,8 +23,8 @@ const DisplaySkills = () => {
 				<>
 					<p>Les technologies backend que je connais :</p>
 					<ul className="back-skills-container">
-						{backEndSkills.map((skill, index) => (
-							<li key={index}>{skill.id}</li>
+						{backEndSkills.map((skill) => (
+							<li key={skill.id}>{skill.id}{skill.level === "" ? (<></>):(<> : {skill.level}</>)}</li>
 						))}
 					</ul>
 				</>
