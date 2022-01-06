@@ -6,7 +6,7 @@ import { Form, Input, InputContainer, Validate } from "../../style/AppStyle";
 import { identity, email, birthDay, phone, link } from "../../register/RegisterMethod";
 //context
 import {UserContext} from "../../context/index"
-import { __PRIVATE__ } from "styled-components";
+
 
 const UserForm = () => {
 	const {

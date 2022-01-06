@@ -46,8 +46,8 @@ const SkillsInfosForm = ({
 	//STORING FRONT END SKILLS
 	const handleCheckFront = (e) => {
 		if (e.target.checked === true) {
-			if (frontEndSkills.includes(e.target.value) === false) {
-				setFrontEndSkills((previousValue) => [...previousValue, e.target.value]);
+			if (frontEndSkills.some(elem =>elem.id === e.target.value) === false) {
+				setFrontEndSkills((previousValue) => [...previousValue, {id : e.target.value, level: ""}]);
 			}
 		} else {
 			const array = [...frontEndSkills];
@@ -56,11 +56,12 @@ const SkillsInfosForm = ({
 			setFrontEndSkills(array);
 		}
 	};
+	console.log(frontEndSkills);
 	//STORING BACKEND SKILLS
 	const handleCheckBack = (e) => {
 		if (e.target.checked === true) {
-			if (backEndSkills.includes(e.target.value)=== false) {
-				setBackEndSkills((previousValue) => [...previousValue, e.target.value]);
+			if (backEndSkills.some(elem =>elem.id === e.target.value)=== false) {
+				setBackEndSkills((previousValue) => [...previousValue, {id : e.target.value, level: ""}]);
 			}
 		} else {
 			const array = [...backEndSkills];
@@ -69,6 +70,7 @@ const SkillsInfosForm = ({
 			setBackEndSkills(array);
 		}
 	};
+
 	return (
 		<div>
 			{displayListFront === false ? (<>
@@ -85,7 +87,7 @@ const SkillsInfosForm = ({
 						name={skill.id}
 						value={skill.id}
 						onChange={handleCheckFront}
-						checked={frontEndSkills.includes(skill.id)}
+						checked={frontEndSkills.some((elem)=> elem.id === skill.id)}
 					>
 						{skill.label}
 					</SkillInput>
@@ -107,7 +109,7 @@ const SkillsInfosForm = ({
 						name={skill.id}
 						value={skill.id}
 						onChange={handleCheckBack}
-						checked={backEndSkills.includes(skill.id)}
+						checked={backEndSkills.some((elem)=> elem.id === skill.id)}
 					>
 						{skill.label}
 					</SkillInput>
