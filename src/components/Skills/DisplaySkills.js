@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
 
-const level = ["Débutant", "Intermédiaire", "Confirmé", "Expert"];
 const DisplaySkills = () => {
 	const { frontEndSkills } = useContext(FrontSkillsContext);
 	const { backEndSkills } = useContext(BackSkillsContext);

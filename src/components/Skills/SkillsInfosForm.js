@@ -3,13 +3,7 @@ import { SkillInput } from "./Inputs";
 import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
 
 
-const SkillsInfosForm = ({
-	// frontEndSkills,
-	// setFrontEndSkills,
-	// backEndSkills,
-	// setBackEndSkills,
-	
-}) => {
+const SkillsInfosForm = () => {
 	const {frontEndSkills, setFrontEndSkills}=useContext(FrontSkillsContext)
 	const {backEndSkills, setBackEndSkills}=useContext(BackSkillsContext)
 	
