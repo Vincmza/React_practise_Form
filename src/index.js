@@ -14,18 +14,18 @@ import {FrontSkillsProvider, BackSkillsProvider, UserContextProvider} from "./co
 ReactDOM.render(
 	<React.StrictMode>
 		<Router>
-    <FrontSkillsProvider>
-    <BackSkillsProvider>
-    <UserContextProvider>
-      <Routes>      
-        <Route exact path="/" exact element={<Presentation />}/>
-        <Route exact path="/form" exact element={<App />}/>
-        <Route exact path="/confirm" exact element={<Confirmation/>}/>
-        <Route path="*" exact element={<Error/>}/>      
-      </Routes>
-    </UserContextProvider>
-    </BackSkillsProvider>  
-    </FrontSkillsProvider> 
+      <FrontSkillsProvider>
+      <BackSkillsProvider>
+      <UserContextProvider>
+        <Routes>      
+          <Route exact path="/" exact element={<Presentation />}/>
+          <Route exact path="/form" exact element={<App />}/>
+          <Route exact path="/confirm" exact element={<Confirmation/>}/>
+          <Route path="*" exact element={<Error/>}/>      
+        </Routes>
+      </UserContextProvider>
+      </BackSkillsProvider>  
+      </FrontSkillsProvider> 
 		</Router>
 	</React.StrictMode>,
 	document.getElementById("root")

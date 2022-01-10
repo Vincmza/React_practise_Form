@@ -50,7 +50,6 @@ const SkillsInfosForm = () => {
 			setFrontEndSkills(array);
 		}
 	};
-	console.log(frontEndSkills)
 	//STORING BACKEND SKILLS
 	const handleCheckBack = (e) => {
 		if (e.target.checked === true) {

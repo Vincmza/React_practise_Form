@@ -1,5 +1,6 @@
 import React, {useContext}from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 //style
 import { Form, Input, InputContainer, Validate } from "../../style/AppStyle";
 //functions that return propertis of register method
@@ -9,8 +10,9 @@ import {UserContext, FrontSkillsContext, BackSkillsContext} from "../../context/
 
 
 const UserForm = () => {
-	const {frontEndskills}=useContext(FrontSkillsContext)
-	const {backEndskills}=useContext(BackSkillsContext)
+	const {frontEndSkills}=useContext(FrontSkillsContext)
+	const {backEndSkills}=useContext(BackSkillsContext)
+	console.log(frontEndSkills);
 	const {
 		register,
 		handleSubmit,
@@ -28,7 +30,7 @@ const UserForm = () => {
 	});
 	const {userData, setUserData}=useContext(UserContext)
 	const onSubmit = (data) => {
-		// console.log("onSubmit :", data);
+		console.log("onSubmit :", data);
 		const months = {
 			"01": "Janvier",
 			"02": "Février",
@@ -135,12 +137,12 @@ const UserForm = () => {
 						{errors.lien && <span>{errors.lien.message}</span>}
 					</Input>
 				</InputContainer>
-				{isValid && (
-					<span style={{ color: "green" }}>Votre formulaire semble correcte</span>
-				)}
-				{isValid && (frontEndskills.length > 0 || backEndskills.length) > 0 ? 
+				{isValid && (frontEndSkills.length > 0 || backEndSkills.length > 0)? 
 				(
-					<><Validate type="submit" value="Valider" /></>
+					<>
+					<span style={{ color: "green" }}>Votre formulaire semble correcte</span>
+					<Link to={"/confirm"}><Validate type="submit" value="Valider" /></Link>
+					</>
 				):
 				(
 					<><Validate disabled={true} type="submit" value="Valider" /></>

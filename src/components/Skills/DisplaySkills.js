@@ -11,7 +11,7 @@ const DisplaySkills = () => {
 					<p>Les technologies frontend que je connais :</p>
 					<ul className="front-skills-container">
 						{frontEndSkills.map((skill) => (
-							<li key={skill} value={skill}>
+							<li key={skill.id} value={skill}>
 								<span>{skill.id}</span>
 								<span>{skill.level === "" ? (<></>):(<> : {skill.level}</>)}</span>
 							</li>
@@ -27,7 +27,7 @@ const DisplaySkills = () => {
 					<p>Les technologies backend que je connais :</p>
 					<ul className="back-skills-container">
 						{backEndSkills.map((skill) => (
-							<li key={skill} value={skill}>
+							<li key={skill.id} value={skill}>
 								<span>{skill.id}</span>
 								<span>{skill.level === "" ? (<></>):(<> : {skill.level}</>)}</span>
 							</li>
