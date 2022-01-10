@@ -5,10 +5,12 @@ import { Form, Input, InputContainer, Validate } from "../../style/AppStyle";
 //functions that return propertis of register method
 import { identity, email, birthDay, phone, link } from "../../register/RegisterMethod";
 //context
-import {UserContext} from "../../context/index"
+import {UserContext, FrontSkillsContext, BackSkillsContext} from "../../context/index"
 
 
 const UserForm = () => {
+	const {frontEndskills}=useContext(FrontSkillsContext)
+	const {backEndskills}=useContext(BackSkillsContext)
 	const {
 		register,
 		handleSubmit,
@@ -136,7 +138,13 @@ const UserForm = () => {
 				{isValid && (
 					<span style={{ color: "green" }}>Votre formulaire semble correcte</span>
 				)}
-				<Validate type="submit" value="Valider" />
+				{isValid && (frontEndskills.length > 0 || backEndskills.length) > 0 ? 
+				(
+					<><Validate type="submit" value="Valider" /></>
+				):
+				(
+					<><Validate disabled={true} type="submit" value="Valider" /></>
+				)}
 			</Form>
 		</div>
 	);
