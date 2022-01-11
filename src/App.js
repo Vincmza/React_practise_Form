@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 //components
 import SkillsInfosForm from "./components/Skills/SkillsInfosForm";
 import DisplaySkills from "./components/Skills/DisplaySkills";
@@ -12,6 +13,7 @@ import "./style/App.css";
 function App() {
 	return (
 		<div className="App">
+			<Link to="/"><input type="button" value="Retour"/></Link>
 			<SkillsInfosForm/>
 			<DisplaySkills/>
 			<UserForm/>

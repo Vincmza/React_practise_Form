@@ -29,7 +29,7 @@ export function email(msg) {
         pattern: {
             value: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/,
             message:
-                "Votre email doit contenir un @ pour être validé et terminer convenablement (exemple : gmail.com, outlook.fr)",
+                "Votre email doit contenir un @ pour être validé et terminer convenablement (exemple : gmail.com, outlook.fr), votre email ne doit pas contenir d'accent",
         },
     };
 }
