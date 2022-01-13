@@ -1,11 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import styledComponents from 'styled-components';
 
 const Presentation = () => {
+    let navigate = useNavigate()
+    const handleNav = ()=>{
+        navigate("/form")
+    }
     return (
         <div>
             Alors ! On veut remplir un formulaire ?
-            <Link to="/form"><input type="button" value="Remplir le formulaire"/></Link>
+            <input type="button" value="Remplir le formulaire" onClick={handleNav}/>
         </div>
     );
 };
