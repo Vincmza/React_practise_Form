@@ -4,6 +4,7 @@ const colors = {
     orange : "#ebcd99",
     purple: "#999ceb",
     shadow: "#1b698b",
-    green: "#a9eb99"
+    green: "#a9eb99",
+    pink:"#eb99d2"
 }
 export default colors

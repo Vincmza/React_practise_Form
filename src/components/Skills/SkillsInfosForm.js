@@ -67,11 +67,11 @@ const SkillsInfosForm = () => {
 	return (
 		<div>
 			{displayListFront === false ? (<>
-				<h1>Compétences frontend</h1>
+				<h1>Compétences <span>frontend</span></h1>
 				<input type="button" value="Afficher" onClick={handleListFront}/>
 			</>):(
 			<>
-				<h1>Compétences frontend</h1>
+				<h1>Compétences <span>frontend</span></h1>
 				<input type="button" value="Masquer" onClick={handleListFront}/>
 				<div className="frontend-skills-container">
 				{availableFrontSkills.map((skill) => (
@@ -90,11 +90,11 @@ const SkillsInfosForm = () => {
 			</>)}
 			
 			{displayListBack === false ? (<>
-				<h1>Compétences backend</h1>
+				<h1>Compétences <span>backend</span></h1>
 				<input type="button" value="Afficher" onClick={handleListBack}/>
 			</>):(
 			<>
-				<h1>Compétences backend</h1>
+				<h1>Compétences <span>backend</span></h1>
 				<input type="button" value="Masquer" onClick={handleListBack}/>
 				<div className="backend-skills-container">
 				{availableBackSkills.map((skill) => (
