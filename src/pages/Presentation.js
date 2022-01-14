@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import {DiAptana} from "react-icons/di"
 //style
-import {Wrapper, iconRotate, IconContainer, imgMove, ImageContainer, Image, HeadWrapper, Title, TextHeader, TextDown, Button}from"../style/PresentationStyle"
+import {Wrapper, IconContainer, ImageContainer, Image, HeadWrapper, Title, TextHeader, TextDown, Button}from"../style/PresentationStyle"
 //Image
 import img from "../assets/form.png";
 
@@ -21,17 +21,15 @@ const Presentation = () => {
 					Un formulaire en bonne et due <span>Form</span>
 				</Title>
 				<TextHeader>
-					Vous souhaitez renseigner les compétences qui sont les vôtres,
-				</TextHeader>
-				<TextHeader>
+					Vous souhaitez renseigner les compétences qui sont les vôtres
                     à travers cette interface douce et sympathique ?
-                </TextHeader>
+				</TextHeader>
 			</HeadWrapper>
 			<ImageContainer>
 				<Image src={img} />
 			</ImageContainer>
 			<TextDown>
-				il vous suffit simplement de cliquer sur ce bouton magique juste en dessous
+				Il vous suffit simplement de cliquer sur ce bouton magique juste en dessous
 			</TextDown>
 			<Button type="button" value="Accéder au formulaire" onClick={handleNav} />
 		</Wrapper>
