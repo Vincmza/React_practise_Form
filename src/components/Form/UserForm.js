@@ -57,8 +57,7 @@ const UserForm = () => {
 		}
 		setUserData(data)
 		navigate("/confirm")
-		console.log(userData)
-	};
+	};	console.log(userData);
 	return (
 		<div>
 			<Form className="form-container" onSubmit={handleSubmit(onSubmit)}>

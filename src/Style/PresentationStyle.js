@@ -8,7 +8,6 @@ export const Wrapper = styledComponents.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: ${colors.blueSky}
 `;
 export const balance = keyframes`
     25%{

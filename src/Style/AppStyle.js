@@ -4,7 +4,6 @@ export const Form = styledComponents.form`
 display: flex;
 flex-direction: column;
 align-items: center;
-border:1px solid green
 `;
 export const Input = styledComponents.div`
 display: flex;
@@ -20,7 +19,6 @@ display: flex;
 flex-direction: column;
 width:60%;
 height:auto;
-border:1px solid red;
 `;
 export const Validate = styledComponents.input`
 width:auto;

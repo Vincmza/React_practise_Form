@@ -2,6 +2,7 @@
 
 body{
     height:100vh;
+    background-color: #99d2eb;
 }
 #root > div{
     height:100%;

@@ -1,8 +1,51 @@
 import React, { useState, useContext } from "react";
+import styledComponents from "styled-components";
+//components
 import { SkillInput } from "./Inputs";
+//context
 import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
-
-
+import colors from "../../style/colors";
+const Wrapper = styledComponents.div`
+	border:1px solid purple;
+	display:flex;
+	justify-content:space-evenly;
+	padding:30px;
+`
+const SkillContainer = styledComponents.div`
+	border:1px solid green;
+	padding:30px;
+	display:flex;
+	flex-direction:column;
+`
+const TitleContainer = styledComponents.div`
+	border:1px solid blue;
+	text-align: center;
+`
+const Title = styledComponents.h1`
+	padding:10px;
+	font-size:1.5em;
+	text-shadow: 1px 1px 2px ${colors.shadow};
+`
+const HideAndDisplayContainer = styledComponents.div`
+	width:100%;
+	padding:20px;
+	border:2px solid red;
+	display:flex;
+	justify-content:center;
+`
+const HideAndDisplay = styledComponents.input`
+	border:none;
+	border-radius:15px;
+	background-color: ${colors.orange};
+	box-shadow: 2px 2px 3px ${colors.shadow};
+	padding:5px 15px;
+	cursor: pointer;
+	max-width:80%;
+`
+const Boxes = styledComponents.div`
+	padding:20px;
+	border:1px solid yellow;
+`
 const SkillsInfosForm = () => {
 	const {frontEndSkills, setFrontEndSkills}=useContext(FrontSkillsContext)
 	const {backEndSkills, setBackEndSkills}=useContext(BackSkillsContext)
@@ -65,53 +108,78 @@ const SkillsInfosForm = () => {
 	};
 
 	return (
-		<div>
-			{displayListFront === false ? (<>
-				<h1>Compétences <span>frontend</span></h1>
-				<input type="button" value="Afficher" onClick={handleListFront}/>
-			</>):(
-			<>
-				<h1>Compétences <span>frontend</span></h1>
-				<input type="button" value="Masquer" onClick={handleListFront}/>
-				<div className="frontend-skills-container">
-				{availableFrontSkills.map((skill) => (
-					<SkillInput
-						key={skill.id}
-						name={skill.id}
-						value={skill.id}
-						skilltype={skill.type}
-						onChange={handleCheckFront}
-						checked={frontEndSkills.some((elem)=> elem.id === skill.id)}
-					>
-						{skill.label}
-					</SkillInput>
-				))}
-			</div>
-			</>)}
+		<Wrapper>
+			<SkillContainer>
+				{displayListFront === false ? (<>
+					<TitleContainer>
+						<Title>Compétences</Title>
+						<Title>frontend</Title>
+					</TitleContainer> 
+					<HideAndDisplayContainer>
+						<HideAndDisplay type="button" value="Afficher" onClick={handleListFront}/>
+					</HideAndDisplayContainer>
+				</>):(
+				<>
+					<TitleContainer>
+						<Title>Compétences</Title>
+						<Title>frontend</Title>
+					</TitleContainer> 
+					<HideAndDisplayContainer>
+						<HideAndDisplay type="button" value="Masquer" onClick={handleListFront}/>
+					</HideAndDisplayContainer>
+					<Boxes>
+						{availableFrontSkills.map((skill) => (
+							<SkillInput
+								key={skill.id}
+								name={skill.id}
+								value={skill.id}
+								skilltype={skill.type}
+								onChange={handleCheckFront}
+								checked={frontEndSkills.some((elem)=> elem.id === skill.id)}
+							>
+								{skill.label}
+							</SkillInput>
+						))}
+					</Boxes>
+				</>)}
+			</SkillContainer>
 			
-			{displayListBack === false ? (<>
-				<h1>Compétences <span>backend</span></h1>
-				<input type="button" value="Afficher" onClick={handleListBack}/>
-			</>):(
-			<>
-				<h1>Compétences <span>backend</span></h1>
-				<input type="button" value="Masquer" onClick={handleListBack}/>
-				<div className="backend-skills-container">
-				{availableBackSkills.map((skill) => (
-					<SkillInput
-						key={skill.id}
-						name={skill.id}
-						value={skill.id}
-						skilltype={skill.type}
-						onChange={handleCheckBack}
-						checked={backEndSkills.some((elem)=> elem.id === skill.id)}
-					>
-						{skill.label}
-					</SkillInput>
-				))}
-			</div>
-			</>)}
-		</div>
+			<SkillContainer>
+				{displayListBack === false ? (<>
+					<TitleContainer>
+						<Title>Compétences</Title>
+						<Title>backend</Title>
+					</TitleContainer>
+					<HideAndDisplayContainer>
+						<HideAndDisplay type="button" value="Afficher" onClick={handleListBack}/>
+					</HideAndDisplayContainer>
+					
+				</>):(
+				<>
+					<TitleContainer>
+						<Title>Compétences</Title>
+						<Title>backend</Title>
+					</TitleContainer>
+					<HideAndDisplayContainer>
+						<HideAndDisplay type="button" value="Masquer" onClick={handleListBack}/>
+					</HideAndDisplayContainer>
+					<Boxes>
+						{availableBackSkills.map((skill) => (
+							<SkillInput
+								key={skill.id}
+								name={skill.id}
+								value={skill.id}
+								skilltype={skill.type}
+								onChange={handleCheckBack}
+								checked={backEndSkills.some((elem)=> elem.id === skill.id)}
+							>
+								{skill.label}
+							</SkillInput>
+						))}
+					</Boxes>
+				</>)}
+			</SkillContainer>
+		</Wrapper>
 	);
 };
 

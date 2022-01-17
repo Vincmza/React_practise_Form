@@ -1,5 +1,13 @@
 import {useContext} from "react";
 import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
+import styledComponents from "styled-components";
+
+const OneBox = styledComponents.div`
+	padding:10px;
+`
+const BoxLabel = styledComponents.label`
+	padding:0px 10px;
+`
 
 export function SkillInput({ name, value, children, onChange, onClick, checked, skilltype }) {
 
@@ -26,7 +34,7 @@ export function SkillInput({ name, value, children, onChange, onClick, checked, 
 	}
 	return (
 		<div>
-			<div>
+			<OneBox>
 				<input
 					type="checkbox"
 					id={name}
@@ -37,8 +45,8 @@ export function SkillInput({ name, value, children, onChange, onClick, checked, 
 					onClick={onClick}
 					onChange={onChange}
 				/>
-				<label for="scales">{children}</label>
-			</div>
+				<BoxLabel for="scales">{children}</BoxLabel>
+			</OneBox>
 			<div>
 				{checked === true && (
 					<select name="level" id="level-select" onChange={(e)=>handleLevel(skilltype,name,e)}>
