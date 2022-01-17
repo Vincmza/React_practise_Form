@@ -2,7 +2,7 @@ import {useContext} from "react";
 import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
 import styledComponents, { keyframes }  from "styled-components";
 
-const mesCouilles2 = keyframes`
+const skillsDisplayed = keyframes`
 	from {
 		opacity:0;
 		transform: translate(-50%,50%);
@@ -13,7 +13,7 @@ const mesCouilles2 = keyframes`
 	}
 `
 const OneBox = styledComponents.div`
-	animation: 400ms ${mesCouilles2} linear both;
+	animation: 400ms ${skillsDisplayed} linear both;
 	padding:10px;
 	animation-delay: ${(props)=>props.children[0].props.anim}ms;
 `
@@ -21,8 +21,8 @@ const BoxLabel = styledComponents.label`
 	padding:0px 10px;
 `
 const Select = styledComponents.select`
-	background-color: #f5c9e7;
-	border:none;
+	background-color: #c5c6f0;
+	border:1px solid #a9eb99;
 	border-radius:5px;
 	padding:2px;
 `
