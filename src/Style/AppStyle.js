@@ -23,3 +23,6 @@ height:auto;
 export const Validate = styledComponents.input`
 width:auto;
 `;
+export const Wrapper = styledComponents.div`
+    transition: 500ms;
+`

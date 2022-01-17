@@ -1,15 +1,32 @@
 import {useContext} from "react";
 import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
-import styledComponents from "styled-components";
+import styledComponents, { keyframes }  from "styled-components";
 
+const mesCouilles2 = keyframes`
+	from {
+		opacity:0;
+		transform: translate(-50%,50%);
+	}
+	to {
+		opacity:1;
+		transform: translate(0%,0%);
+	}
+`
 const OneBox = styledComponents.div`
+	animation: 400ms ${mesCouilles2} linear both;
 	padding:10px;
+	animation-delay: ${(props)=>props.children[0].props.anim}ms;
 `
 const BoxLabel = styledComponents.label`
 	padding:0px 10px;
 `
-
-export function SkillInput({ name, value, children, onChange, onClick, checked, skilltype }) {
+const Select = styledComponents.select`
+	background-color: #f5c9e7;
+	border:none;
+	border-radius:5px;
+	padding:2px;
+`
+export function SkillInput({ name, value, children, onChange, onClick, checked, skilltype, anim }) {
 
 	const {frontEndSkills, setFrontEndSkills}=useContext(FrontSkillsContext)
 	const {backEndSkills, setBackEndSkills}=useContext(BackSkillsContext)
@@ -44,19 +61,20 @@ export function SkillInput({ name, value, children, onChange, onClick, checked, 
 					checked={checked}
 					onClick={onClick}
 					onChange={onChange}
+					anim={anim}
 				/>
 				<BoxLabel for="scales">{children}</BoxLabel>
 			</OneBox>
 			<div>
 				{checked === true && (
-					<select name="level" id="level-select" onChange={(e)=>handleLevel(skilltype,name,e)}>
+					<Select name="level" id="level-select" onChange={(e)=>handleLevel(skilltype,name,e)}>
 						<option value="">Choisissez votre niveau</option>
 						{level.map(level => (
 							<option key={level} value={level}>
 								{level}
 							</option>
 						))}
-					</select>
+					</Select>
 				)}
 			</div>
 		</div>

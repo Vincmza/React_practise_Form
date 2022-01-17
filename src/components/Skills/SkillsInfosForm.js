@@ -5,31 +5,36 @@ import { SkillInput } from "./Inputs";
 //context
 import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
 import colors from "../../style/colors";
+
 const Wrapper = styledComponents.div`
-	border:1px solid purple;
+	// border:1px solid purple;
 	display:flex;
-	justify-content:space-evenly;
+	justify-content:space-around;
 	padding:30px;
 `
 const SkillContainer = styledComponents.div`
-	border:1px solid green;
+	// border:1px solid green;
 	padding:30px;
 	display:flex;
-	flex-direction:column;
 `
 const TitleContainer = styledComponents.div`
-	border:1px solid blue;
+	// border:1px solid blue;
 	text-align: center;
 `
 const Title = styledComponents.h1`
 	padding:10px;
-	font-size:1.5em;
+	font-size:1.8em;
 	text-shadow: 1px 1px 2px ${colors.shadow};
+`
+const Header = styledComponents.div`
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
 `
 const HideAndDisplayContainer = styledComponents.div`
 	width:100%;
 	padding:20px;
-	border:2px solid red;
+	// border:2px solid red;
 	display:flex;
 	justify-content:center;
 `
@@ -43,9 +48,11 @@ const HideAndDisplay = styledComponents.input`
 	max-width:80%;
 `
 const Boxes = styledComponents.div`
+	font-size: 1.2em;
 	padding:20px;
-	border:1px solid yellow;
+	// border:1px solid yellow;
 `
+
 const SkillsInfosForm = () => {
 	const {frontEndSkills, setFrontEndSkills}=useContext(FrontSkillsContext)
 	const {backEndSkills, setBackEndSkills}=useContext(BackSkillsContext)
@@ -88,7 +95,7 @@ const SkillsInfosForm = () => {
 			}
 		} else {
 			const array = [...frontEndSkills];
-			const index = array.indexOf(e.target.value);
+			const index = array.findIndex(item=> item.id === e.target.value);
 			array.splice(index, 1);
 			setFrontEndSkills(array);
 		}
@@ -101,35 +108,39 @@ const SkillsInfosForm = () => {
 			}
 		} else {
 			const array = [...backEndSkills];
-			const index = array.indexOf(e.target.value);
+			const index = array.findIndex(item=> item.id === e.target.value);
 			array.splice(index, 1);
 			setBackEndSkills(array);
 		}
 	};
-
 	return (
 		<Wrapper>
 			<SkillContainer>
 				{displayListFront === false ? (<>
-					<TitleContainer>
-						<Title>Compétences</Title>
-						<Title>frontend</Title>
-					</TitleContainer> 
-					<HideAndDisplayContainer>
-						<HideAndDisplay type="button" value="Afficher" onClick={handleListFront}/>
-					</HideAndDisplayContainer>
+					<Header>
+						<TitleContainer>
+							<Title>Compétences</Title>
+							<Title>frontend</Title>
+						</TitleContainer> 
+						<HideAndDisplayContainer>
+							<HideAndDisplay type="button" value="Afficher" onClick={handleListFront}/>
+						</HideAndDisplayContainer>
+					</Header>	
 				</>):(
 				<>
-					<TitleContainer>
-						<Title>Compétences</Title>
-						<Title>frontend</Title>
-					</TitleContainer> 
-					<HideAndDisplayContainer>
-						<HideAndDisplay type="button" value="Masquer" onClick={handleListFront}/>
-					</HideAndDisplayContainer>
+					<Header>
+						<TitleContainer>
+							<Title>Compétences</Title>
+							<Title>frontend</Title>
+						</TitleContainer> 
+						<HideAndDisplayContainer>
+							<HideAndDisplay type="button" value="Masquer" onClick={handleListFront}/>
+						</HideAndDisplayContainer>
+					</Header>
 					<Boxes>
-						{availableFrontSkills.map((skill) => (
+						{availableFrontSkills.map((skill,index) => (
 							<SkillInput
+								anim={150*(index+1)}
 								key={skill.id}
 								name={skill.id}
 								value={skill.id}
@@ -146,26 +157,30 @@ const SkillsInfosForm = () => {
 			
 			<SkillContainer>
 				{displayListBack === false ? (<>
-					<TitleContainer>
-						<Title>Compétences</Title>
-						<Title>backend</Title>
-					</TitleContainer>
-					<HideAndDisplayContainer>
-						<HideAndDisplay type="button" value="Afficher" onClick={handleListBack}/>
-					</HideAndDisplayContainer>
-					
+					<Header>
+						<TitleContainer>
+							<Title>Compétences</Title>
+							<Title>frontend</Title>
+						</TitleContainer> 
+						<HideAndDisplayContainer>
+							<HideAndDisplay type="button" value="Afficher" onClick={handleListBack}/>
+						</HideAndDisplayContainer>
+					</Header>	
 				</>):(
 				<>
-					<TitleContainer>
-						<Title>Compétences</Title>
-						<Title>backend</Title>
-					</TitleContainer>
-					<HideAndDisplayContainer>
-						<HideAndDisplay type="button" value="Masquer" onClick={handleListBack}/>
-					</HideAndDisplayContainer>
+					<Header>
+						<TitleContainer>
+							<Title>Compétences</Title>
+							<Title>frontend</Title>
+						</TitleContainer> 
+						<HideAndDisplayContainer>
+							<HideAndDisplay type="button" value="Afficher" onClick={handleListBack}/>
+						</HideAndDisplayContainer>
+					</Header>
 					<Boxes>
-						{availableBackSkills.map((skill) => (
+						{availableBackSkills.map((skill,index) => (
 							<SkillInput
+								anim={150*(index+1)}
 								key={skill.id}
 								name={skill.id}
 								value={skill.id}

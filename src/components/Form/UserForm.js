@@ -2,7 +2,7 @@ import React, {useContext}from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 //style
-import { Form, Input, InputContainer, Validate } from "../../style/AppStyle";
+import { Form, Input, InputContainer, Validate, Wrapper } from "../../style/AppStyle";
 //functions that return properties of register method
 import { identity, email, birthDay, phone, link } from "../../register/RegisterMethod";
 //context
@@ -59,7 +59,7 @@ const UserForm = () => {
 		navigate("/confirm")
 	};	console.log(userData);
 	return (
-		<div>
+		<Wrapper>
 			<Form className="form-container" onSubmit={handleSubmit(onSubmit)}>
 				<InputContainer>
 					<Input>
@@ -149,7 +149,7 @@ const UserForm = () => {
 					<><Validate disabled={true} type="submit" value="Valider" /></>
 				)}
 			</Form>
-		</div>
+		</Wrapper>
 	);
 };
 
