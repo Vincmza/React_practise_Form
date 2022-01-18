@@ -1,12 +1,11 @@
 import React, { useState, useContext } from "react";
-import styledComponents from "styled-components";
 import { useNavigate } from "react-router-dom";
-
 //components
 import { SkillInput } from "./Inputs";
 //context
 import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
-import colors from "../../style/colors";
+//style
+import {WrapperContainer,BackButton,InputBack,Wrapper,SkillContainer,TitleContainer,Title,Header,HideAndDisplayContainer,HideAndDisplay,Boxes,ImgContainer,Img,LabelContainer}from "../../style/Skills/SkillsInfosStyle"
 //front skill icons
 import html from "../../assets/front/html.png"
 import css from "../../assets/front/css3.png"
@@ -21,104 +20,9 @@ import ruby from "../../assets/back/ruby.png"
 import symfony from "../../assets/back/symfony.png"
 import node from "../../assets/back/nodejs2.jpg"
 import python from "../../assets/back/python.png"
-import sql from "../../assets/back/sql2.jpg"
-
-const WrapperContainer = styledComponents.div`
-	background: linear-gradient(#999ceb, #99d2eb);
-`
-const BackButton = styledComponents.div`
-	// border:2px solid green;
-	padding:20px;
-	display:flex;
-	justify-content:center;
-`
-const InputBack = styledComponents.input`
-	padding:5px 10px;
-	border:none;
-	background-color: ${colors.orange};
-	box-shadow: 2px 2px 3px ${colors.shadow};
-	border-radius:5px;
-	transform: scale(1);
-	transition:500ms;
-	&:hover {
-		transform:scale(1.2);
-		cursor:pointer;
-		background-color: ${colors.pink}	
-	}
-	&:active {
-		background-color: ${colors.green};
-	}
-	
-`
-const Wrapper = styledComponents.div`
-	// border:1px solid purple;
-	display:flex;
-	justify-content:space-around;
-	padding:30px;
-`;
-const SkillContainer = styledComponents.div`
-	border:1px solid ${colors.orange};
-	border-radius:20px;
-	padding:30px;
-	display:flex;
-`;
-const TitleContainer = styledComponents.div`
-	// border:1px solid blue;
-	text-align: center;
-`;
-const Title = styledComponents.h1`
-	padding:10px;
-	font-size:1.8em;
-	text-shadow: 1px 1px 2px ${colors.shadow};
-`;
-const Header = styledComponents.div`
-	display:flex;
-	flex-direction:column;
-	justify-content:center;
-`;
-const HideAndDisplayContainer = styledComponents.div`
-	width:100%;
-	padding:20px;
-	// border:2px solid red;
-	display:flex;
-	justify-content:center;
-`;
-const HideAndDisplay = styledComponents.input`
-	border:none;
-	border-radius:15px;
-	background-color: ${colors.orange};
-	box-shadow: 2px 2px 3px ${colors.shadow};
-	padding:5px 15px;
-	max-width:80%;
-	transform:scale(1);
-	transition:500ms;
-	:hover {
-		transform:scale(1.2);
-		cursor: pointer;
-		background-color: ${colors.pink}
-	}
-	&:active {
-		background-color: ${colors.green};
-	}
-`;
-const Boxes = styledComponents.div`
-	font-size: 1.2em;
-	padding:20px;
-	// border:1px solid yellow;
-`;
-const ImgContainer = styledComponents.div`
-	width:20px;
-	height:20px;
-	margin-left:10px;
-`
-const Img = styledComponents.img`
-	width:100%;
-	height:100%;
-	object-fit:cover;
-`
-const LabelContainer = styledComponents.div`
-	display:flex;
-`
+import sql from "../../assets/back/sql-logo.png"
+import sequelize from "../../assets/back/sequelize.png"
+import postgre from "../../assets/back/postgre.png"
 
 const SkillsInfosForm = () => {
 	const { frontEndSkills, setFrontEndSkills } = useContext(FrontSkillsContext);
@@ -143,8 +47,8 @@ const SkillsInfosForm = () => {
 		{ id: "Node.js", label: "Node.js", type: "backend", image: node },
 		{ id: "Python", label: "Python", type: "backend", image: python },
 		{ id: "SQL", label: "SQL", type: "backend", image: sql },
-		{ id: "Sequelize", label: "Sequelize", type: "backend" },
-		{ id: "PostgreSQL", label: "PostegreSQL", type: "backend" },
+		{ id: "Sequelize", label: "Sequelize", type: "backend", image: sequelize },
+		{ id: "PostgreSQL", label: "PostegreSQL", type: "backend", image: postgre },
 	];
 	//STATE ALLOWS TO EITHER DISPLAY OR HIDE SKILLS
 	const [displayListFront, setDisplayListFront] = useState(false);
@@ -242,7 +146,7 @@ const SkillsInfosForm = () => {
 									>
 										{<LabelContainer>
 											<div>{skill.label}</div>
-											<ImgContainer><Img src={skill.image}/></ImgContainer>
+											<ImgContainer><Img src={skill.image} alt={skill.id}/></ImgContainer>
 										</LabelContainer>}
 									</SkillInput>
 								))}
@@ -296,7 +200,7 @@ const SkillsInfosForm = () => {
 									>
 										{<LabelContainer>
 											<div>{skill.label}</div>
-											<ImgContainer><Img src={skill.image}/></ImgContainer>
+											<ImgContainer><Img src={skill.image} alt={skill.id}/></ImgContainer>
 										</LabelContainer>}
 									</SkillInput>
 								))}

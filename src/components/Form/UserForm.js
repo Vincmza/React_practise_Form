@@ -2,7 +2,7 @@ import React, {useContext}from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 //style
-import { Form, Input, InputContainer, Validate, Wrapper } from "../../style/AppStyle";
+import { Form, Input, InputContainer, Validate, Wrapper } from "../../style/UserFormStyle";
 //functions that return properties of register method
 import { identity, email, birthDay, phone, link } from "../../register/RegisterMethod";
 //context
