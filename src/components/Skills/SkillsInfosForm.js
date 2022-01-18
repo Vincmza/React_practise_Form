@@ -182,7 +182,7 @@ const SkillsInfosForm = () => {
 								<HideAndDisplayContainer>
 									<HideAndDisplay
 										type="button"
-										value="Afficher"
+										value="Masquer"
 										onClick={handleListBack}
 									/>
 								</HideAndDisplayContainer>
