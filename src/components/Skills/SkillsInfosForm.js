@@ -8,14 +8,20 @@ import { SkillInput } from "./Inputs";
 import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
 import colors from "../../style/colors";
 //front skill icons
-import html from "../../assets/html.png"
-import css from "../../assets/css3.png"
-import javascript from "../../assets/js.png"
-import react from "../../assets/react.png"
-import vue from "../../assets/vue.png"
-import angular from "../../assets/angular.svg"
-import ember from "../../assets/ember.png"
+import html from "../../assets/front/html.png"
+import css from "../../assets/front/css3.png"
+import javascript from "../../assets/front/js.png"
+import react from "../../assets/front/react.png"
+import vue from "../../assets/front/vue.png"
+import angular from "../../assets/front/angular.svg"
+import ember from "../../assets/front/ember.png"
 //back skills icons
+import php from "../../assets/back/php.png"
+import ruby from "../../assets/back/ruby.png"
+import symfony from "../../assets/back/symfony.png"
+import node from "../../assets/back/nodejs2.jpg"
+import python from "../../assets/back/python.png"
+import sql from "../../assets/back/sql2.jpg"
 
 const WrapperContainer = styledComponents.div`
 	background: linear-gradient(#999ceb, #99d2eb);
@@ -108,6 +114,7 @@ const ImgContainer = styledComponents.div`
 const Img = styledComponents.img`
 	width:100%;
 	height:100%;
+	object-fit:cover;
 `
 const LabelContainer = styledComponents.div`
 	display:flex;
@@ -130,12 +137,12 @@ const SkillsInfosForm = () => {
 		{ id: "Ember", label: "Ember", type: "frontend", image: ember },
 	];
 	const availableBackSkills = [
-		{ id: "PHP", label: "PHP", type: "backend" },
-		{ id: "Ruby", label: "Ruby", type: "backend" },
-		{ id: "Symphony", label: "Symphony", type: "backend" },
-		{ id: "Node.js", label: "Node.js", type: "backend" },
-		{ id: "Python", label: "Python", type: "backend" },
-		{ id: "SQL", label: "SQL", type: "backend" },
+		{ id: "PHP", label: "PHP", type: "backend", image: php },
+		{ id: "Ruby", label: "Ruby", type: "backend", image: ruby },
+		{ id: "Symfony", label: "Symfony", type: "backend", image: symfony },
+		{ id: "Node.js", label: "Node.js", type: "backend", image: node },
+		{ id: "Python", label: "Python", type: "backend", image: python },
+		{ id: "SQL", label: "SQL", type: "backend", image: sql },
 		{ id: "Sequelize", label: "Sequelize", type: "backend" },
 		{ id: "PostgreSQL", label: "PostegreSQL", type: "backend" },
 	];
@@ -287,7 +294,10 @@ const SkillsInfosForm = () => {
 										onChange={handleCheckBack}
 										checked={backEndSkills.some((elem) => elem.id === skill.id)}
 									>
-										{skill.label}
+										{<LabelContainer>
+											<div>{skill.label}</div>
+											<ImgContainer><Img src={skill.image}/></ImgContainer>
+										</LabelContainer>}
 									</SkillInput>
 								))}
 							</Boxes>
