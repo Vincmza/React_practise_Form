@@ -7,10 +7,18 @@ import { SkillInput } from "./Inputs";
 //context
 import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
 import colors from "../../style/colors";
-
+//front skill icons
+import html from "../../assets/html.png"
+import css from "../../assets/css3.png"
+import javascript from "../../assets/js.png"
+import react from "../../assets/react.png"
+import vue from "../../assets/vue.png"
+import angular from "../../assets/angular.svg"
+import ember from "../../assets/ember.png"
+//back skills icons
 
 const WrapperContainer = styledComponents.div`
-	background: linear-gradient(#999ceb, #a9eb99);
+	background: linear-gradient(#999ceb, #99d2eb);
 `
 const BackButton = styledComponents.div`
 	// border:2px solid green;
@@ -43,7 +51,8 @@ const Wrapper = styledComponents.div`
 	padding:30px;
 `;
 const SkillContainer = styledComponents.div`
-	// border:1px solid green;
+	border:1px solid ${colors.orange};
+	border-radius:20px;
 	padding:30px;
 	display:flex;
 `;
@@ -91,6 +100,18 @@ const Boxes = styledComponents.div`
 	padding:20px;
 	// border:1px solid yellow;
 `;
+const ImgContainer = styledComponents.div`
+	width:20px;
+	height:20px;
+	margin-left:10px;
+`
+const Img = styledComponents.img`
+	width:100%;
+	height:100%;
+`
+const LabelContainer = styledComponents.div`
+	display:flex;
+`
 
 const SkillsInfosForm = () => {
 	const { frontEndSkills, setFrontEndSkills } = useContext(FrontSkillsContext);
@@ -100,13 +121,13 @@ const SkillsInfosForm = () => {
 		navigate("/")
 	}
 	const availableFrontSkills = [
-		{ id: "HTML5", label: "HTML5", type: "frontend" },
-		{ id: "CSS3", label: "CSS3", type: "frontend" },
-		{ id: "Javascript", label: "Javascript", type: "frontend" },
-		{ id: "React.js", label: "React.js", type: "frontend" },
-		{ id: "Vue.js", label: "Vue.js", type: "frontend" },
-		{ id: "Angular", label: "Angular", type: "frontend" },
-		{ id: "Ember", label: "Ember", type: "frontend" },
+		{ id: "HTML5", label: "HTML5", type: "frontend", image: html },
+		{ id: "CSS3", label: "CSS3", type: "frontend", image: css },
+		{ id: "Javascript", label: "Javascript", type: "frontend", image: javascript },
+		{ id: "React.js", label: "React.js", type: "frontend", image: react },
+		{ id: "Vue.js", label: "Vue.js", type: "frontend", image: vue },
+		{ id: "Angular", label: "Angular", type: "frontend", image: angular },
+		{ id: "Ember", label: "Ember", type: "frontend", image: ember },
 	];
 	const availableBackSkills = [
 		{ id: "PHP", label: "PHP", type: "backend" },
@@ -212,7 +233,10 @@ const SkillsInfosForm = () => {
 											(elem) => elem.id === skill.id
 										)}
 									>
-										{skill.label}
+										{<LabelContainer>
+											<div>{skill.label}</div>
+											<ImgContainer><Img src={skill.image}/></ImgContainer>
+										</LabelContainer>}
 									</SkillInput>
 								))}
 							</Boxes>

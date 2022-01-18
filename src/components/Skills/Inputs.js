@@ -16,6 +16,8 @@ const OneBox = styledComponents.div`
 	animation: 400ms ${skillsDisplayed} linear both;
 	padding:10px;
 	animation-delay: ${(props)=>props.children[0].props.anim}ms;
+	display:flex;
+	align-items:center;
 `
 const BoxLabel = styledComponents.label`
 	padding:0px 10px;
