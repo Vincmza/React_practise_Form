@@ -44,7 +44,7 @@ export function SkillInput({ name, value, children, onChange, onClick, checked, 
 			</OneBox>
 			<div>
 				{checked === true && (
-					<Select name="level" id="level-select" onChange={(e)=>handleLevel(skilltype,name,e)}>
+					<Select name="level" id="level-select" anim={anim} onChange={(e)=>handleLevel(skilltype,name,e)}>
 						<option value="">Choisissez votre niveau</option>
 						{level.map(level => (
 							<option key={level} value={level}>
