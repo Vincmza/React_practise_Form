@@ -35,7 +35,7 @@ export const Wrapper = styledComponents.div`
 	padding:30px;
 `;
 export const SkillContainer = styledComponents.div`
-	border:1px solid ${colors.orange};
+	// border:1px solid ${colors.orange};
 	border-radius:20px;
 	padding:30px;
 	display:flex;
