@@ -1,33 +1,8 @@
 import {useContext} from "react";
 import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
-import styledComponents, { keyframes }  from "styled-components";
 
-const skillsDisplayed = keyframes`
-	from {
-		opacity:0;
-		transform: translate(-50%,50%);
-	}
-	to {
-		opacity:1;
-		transform: translate(0%,0%);
-	}
-`
-const OneBox = styledComponents.div`
-	animation: 400ms ${skillsDisplayed} linear both;
-	padding:10px;
-	animation-delay: ${(props)=>props.children[0].props.anim}ms;
-	display:flex;
-	align-items:center;
-`
-const BoxLabel = styledComponents.label`
-	padding:0px 10px;
-`
-const Select = styledComponents.select`
-	background-color: #c5c6f0;
-	border:1px solid #a9eb99;
-	border-radius:5px;
-	padding:2px;
-`
+import {OneBox,BoxLabel,Select} from "../../style/Skills/InputsStyle"
+
 export function SkillInput({ name, value, children, onChange, onClick, checked, skilltype, anim }) {
 
 	const {frontEndSkills, setFrontEndSkills}=useContext(FrontSkillsContext)
