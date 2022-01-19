@@ -1,7 +1,7 @@
 import {useContext} from "react";
 import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
 
-import {OneBox,BoxLabel,Select} from "../../style/Skills/InputsStyle"
+import {OneBox,BoxLabel,Select, SelectContainer} from "../../style/Skills/InputsStyle"
 
 export function SkillInput({ name, value, children, onChange, onClick, checked, skilltype, anim }) {
 
@@ -42,7 +42,7 @@ export function SkillInput({ name, value, children, onChange, onClick, checked, 
 				/>
 				<BoxLabel for="scales">{children}</BoxLabel>
 			</OneBox>
-			<div>
+			<SelectContainer>
 				{checked === true && (
 					<Select name="level" id="level-select" anim={anim} onChange={(e)=>handleLevel(skilltype,name,e)}>
 						<option value="">Votre niveau</option>
@@ -53,7 +53,7 @@ export function SkillInput({ name, value, children, onChange, onClick, checked, 
 						))}
 					</Select>
 				)}
-			</div>
+			</SelectContainer>
 		</div>
 	);
 }

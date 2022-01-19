@@ -51,7 +51,7 @@ const LiContainer = styledComponents.li`
 	align-items:center;
 	background-color:${colors.orange};
 	opacity:0;
-	animation: 1s ${liDisplay} forwards;
+	animation: 1.5s ${liDisplay} forwards;
 `;
 const SkillName = styledComponents.span`
 	margin-right:10px;

@@ -21,10 +21,15 @@ export const BoxLabel = styledComponents.label`
 	padding:0px 10px;
 `
 export const Select = styledComponents.select`
+	margin-left: 35px;
 	background-color: #ebcd99;
 	border:none;
 	border-radius:5px;
 	padding:2px;
-	animation: 350ms ${skillsDisplayed} linear both;
+	animation: 600ms ${skillsDisplayed} linear both;
 	animation-delay: ${(props)=>props.children[0].props.anim}ms;
+`
+export const SelectContainer = styledComponents.div`
+	display:flex;
+	align-items:center;
 `
