@@ -92,7 +92,7 @@ export const ImgContainer = styledComponents.div`
 export const Img = styledComponents.img`
 	width:100%;
 	height:100%;
-	object-fit:cover;
+	object-fit:cotain;
 `
 export const LabelContainer = styledComponents.div`
 	display:flex;

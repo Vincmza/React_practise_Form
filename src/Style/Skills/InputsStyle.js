@@ -25,6 +25,6 @@ export const Select = styledComponents.select`
 	border:none;
 	border-radius:5px;
 	padding:2px;
-	animation: 400ms ${skillsDisplayed} linear both;
+	animation: 350ms ${skillsDisplayed} linear both;
 	animation-delay: ${(props)=>props.children[0].props.anim}ms;
 `
