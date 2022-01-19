@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
 import { FaCircle, FaArrowRight } from "react-icons/fa";
-import styledComponents from "styled-components";
+import styledComponents, { keyframes } from "styled-components";
 import colors from "../../style/colors";
 
 //array for dot colors in relation to user's level
@@ -16,6 +16,11 @@ const findRightColor = (skill) => {
 		if (skill === dotColors[i].name) return { color: dotColors[i].color };
 	}
 };
+const liDisplay = keyframes`
+	to {
+		opacity: 1;
+	}
+`
 const Wrapper = styledComponents.div`
 	display:flex;
 	justify-content: space-around;
@@ -45,6 +50,8 @@ const LiContainer = styledComponents.li`
 	display:flex;
 	align-items:center;
 	background-color:${colors.orange};
+	opacity:0;
+	animation: 1s ${liDisplay} forwards;
 `;
 const SkillName = styledComponents.span`
 	margin-right:10px;
