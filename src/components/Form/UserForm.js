@@ -2,7 +2,7 @@ import React, {useContext}from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 //style
-import { Form, Input, InputContainer, Validate, Wrapper } from "../../style/UserFormStyle";
+import { Form, Input, InputContainer, Validate, Wrapper, Label, Input2, Error } from "../../style/UserFormStyle";
 //functions that return properties of register method
 import { identity, email, birthDay, phone, link } from "../../register/RegisterMethod";
 //context
@@ -63,8 +63,8 @@ const UserForm = () => {
 			<Form className="form-container" onSubmit={handleSubmit(onSubmit)}>
 				<InputContainer>
 					<Input>
-						<label htmlFor={"nom"}>Nom</label>
-						<input
+						<Label htmlFor={"nom"}>Nom</Label>
+						<Input2
 							type="text"
 							id={"nom"}
 							name={"nom"}
@@ -72,11 +72,11 @@ const UserForm = () => {
 							placeholder={"Nom"}
 							{...register("nom", identity("nom"))}
 						/>
-						{errors.nom && <span>{errors.nom.message}</span>}
+						{errors.nom && <Error>{errors.nom.message}</Error>}
 					</Input>
 					<Input>
-						<label htmlFor={"prenom"}>Prénom</label>
-						<input
+						<Label htmlFor={"prenom"}>Prénom</Label>
+						<Input2
 							type="text"
 							id={"prenom"}
 							name={"prenom"}
@@ -84,12 +84,12 @@ const UserForm = () => {
 							placeholder={"Prénom"}
 							{...register("prenom", identity("prenom"))}
 						/>
-						{errors.prenom && <span>{errors.prenom.message}</span>}
+						{errors.prenom && <Error>{errors.prenom.message}</Error>}
 					</Input>
 
 					<Input>
-						<label htmlFor={"email"}>email</label>
-						<input
+						<Label htmlFor={"email"}>email</Label>
+						<Input2
 							type="text"
 							id={"email"}
 							name={"email"}
@@ -97,24 +97,24 @@ const UserForm = () => {
 							placeholder={"votre@email.com"}
 							{...register("email", email("email"))}
 						/>
-						{errors.email && <span>{errors.email.message}</span>}
+						{errors.email && <Error>{errors.email.message}</Error>}
 					</Input>
 
 					<Input>
-						<label htmlFor={"birthday"}>Anniversaire</label>
-						<input
+						<Label htmlFor={"birthday"}>Anniversaire</Label>
+						<Input2
 							type="date"
 							id={"birthday"}
 							name={"birthday"}
 							className="form-birthdate"
 							{...register("birthday", birthDay("date de naissance"))}
 						/>
-						{errors.birthday && <span>{errors.birthday.message}</span>}
+						{errors.birthday && <Error>{errors.birthday.message}</Error>}
 					</Input>
 
 					<Input>
-						<label htmlFor={"telephone"}>Téléphone</label>
-						<input
+						<Label htmlFor={"telephone"}>Téléphone</Label>
+						<Input2
 							type="text"
 							id={"telephone"}
 							name={"telephone"}
@@ -122,12 +122,12 @@ const UserForm = () => {
 							placeholder="06 ** ** ** ** facultatif"
 							{...register("telephone", phone())}
 						/>
-						{errors.telephone && <span>{errors.telephone.message}</span>}
+						{errors.telephone && <Error>{errors.telephone.message}</Error>}
 					</Input>
 
 					<Input>
-						<label htmlFor={"lien"}>Lien</label>
-						<input
+						<Label htmlFor={"lien"}>Lien</Label>
+						<Input2
 							type="tel"
 							id={"lien"}
 							name={"lien"}
@@ -135,7 +135,7 @@ const UserForm = () => {
 							placeholder="https:// facultatif"
 							{...register("lien", link())}
 						/>
-						{errors.lien && <span>{errors.lien.message}</span>}
+						{errors.lien && <Error>{errors.lien.message}</Error>}
 					</Input>
 				</InputContainer>
 				{isValid && (frontEndSkills.length > 0 || backEndSkills.length > 0)? 

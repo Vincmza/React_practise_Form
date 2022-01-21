@@ -44,7 +44,7 @@ const List = styledComponents.ul`
 `;
 const LiContainer = styledComponents.li`
 	// border:1px solid red;
-	border-radius:10px;
+	border-radius:5px;
 	padding:10px;
 	margin-bottom:10px;
 	display:flex;
