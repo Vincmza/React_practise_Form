@@ -1,6 +1,7 @@
-import React, {useContext}from "react";
+import React, {useContext,useState}from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import colors from "../../style/colors";
 //style
 import { Form, Input, InputContainer, Validate, Wrapper, Label, Input2, Error } from "../../style/UserFormStyle";
 //functions that return properties of register method
@@ -57,7 +58,7 @@ const UserForm = () => {
 		}
 		setUserData(data)
 		navigate("/confirm")
-	};	console.log(userData);
+	};	
 	return (
 		<Wrapper>
 			<Form className="form-container" onSubmit={handleSubmit(onSubmit)}>
@@ -142,11 +143,18 @@ const UserForm = () => {
 				(
 					<>
 					<span style={{ color: "green" }}>Votre formulaire semble correct</span>
-					<Validate type="submit" value="Valider"/>
+					<Validate type="submit" value="Valider" style={{"background-color": `${colors.orange}`}}/>
 					</>
 				):
-				(
-					<><Validate disabled={true} type="submit" value="Valider" /></>
+				(	
+					<>
+						<Validate 
+						disabled={true} 
+						type="submit" 
+						value="Valider" 
+						style={{"background-color": `${colors.redSoft}`}}
+						/>
+					</>
 				)}
 			</Form>
 		</Wrapper>

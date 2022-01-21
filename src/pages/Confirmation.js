@@ -98,18 +98,33 @@ const Confirmation = () => {
 			<div>
 				<h2>Continuons avec vos compétences</h2>
 				<div>
-					<h3>En ce qui concerne la partie frontend</h3>
-                    {checkLevel("front","Débutant")}
-                    {checkLevel("front","Intermédiaire")}
-                    {checkLevel("front","Confirmé")}
-                    {checkLevel("front","Expert")}
+                    {frontEndSkills.length > 0 ? 
+                    (
+                    <>
+                        <h3>En ce qui concerne la partie frontend</h3>
+                        {checkLevel("front","Débutant")}
+                        {checkLevel("front","Intermédiaire")}
+                        {checkLevel("front","Confirmé")}
+                        {checkLevel("front","Expert")}
+                    </>):(
+                    <>
+                        <h3>Vous n'avez renseigné aucune compétence frontend</h3>
+                    </>)}
+					
 				</div>
                 <div>
-					<h3>En ce qui concerne la partie backend</h3>
-                    {checkLevel("back","Débutant")}
-                    {checkLevel("back","Intermédiaire")}
-                    {checkLevel("back","Confirmé")}
-                    {checkLevel("back","Expert")}
+                    {backEndSkills.length > 0 ? 
+                    (
+                    <>
+                        <h3>En ce qui concerne la partie backend</h3>
+                        {checkLevel("back","Débutant")}
+                        {checkLevel("back","Intermédiaire")}
+                        {checkLevel("back","Confirmé")}
+                        {checkLevel("back","Expert")}
+                    </>):
+                    (<>
+                        <h3>Vous n'avez renseigné aucune compétence backend</h3>
+                    </>)}
 				</div>
 			</div>
 		</div>

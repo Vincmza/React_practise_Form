@@ -18,7 +18,6 @@ export const errorMove = keyframes`
         transform: translateX(0%);
     }
 `
-
 export const Form = styledComponents.form`
     // border:1px solid red;
     display: flex;
@@ -52,6 +51,7 @@ export const Input2 = styledComponents.input`
     &::placeholder{
         color:black;
         font-style:italic;
+        opacity:0.6;
     }
     &:focus{
         outline:none;
@@ -77,9 +77,20 @@ export const InputContainer = styledComponents.div`
     height:auto;
 `;
 export const Validate = styledComponents.input`
+    border-radius:5px;
+    padding:5px 20px;
+    font-size:1.1em;
+    border:none;
     width:auto;
     margin-top:20px;
     margin-bottom:20px;
+    transform:scale(1);
+    transition:500ms;
+    &:hover{
+        cursor:pointer;
+        background-color: ${colors.pink};
+        transform:scale(1.2);
+    }    
 `;
 export const Wrapper = styledComponents.div`
     transition: 500ms;
