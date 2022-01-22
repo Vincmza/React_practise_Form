@@ -103,6 +103,7 @@ export const Validate = styledComponents.input`
     transform:scale(1);
     transition:500ms;
     background-color: ${colors.orange};
+    box-shadow: 2px 2px 5px ${colors.shadow};
     &:hover{
         cursor:pointer;
         background-color: ${colors.pink};
@@ -111,4 +112,7 @@ export const Validate = styledComponents.input`
 `;
 export const Wrapper = styledComponents.div`
     transition: 500ms;
+`
+export const SuccessWords = styledComponents.span`
+    animation: 1.5s ${errorMove} linear;
 `

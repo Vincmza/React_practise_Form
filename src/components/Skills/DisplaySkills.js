@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { FrontSkillsContext, BackSkillsContext } from "../../context/index";
-import { FaCircle, FaArrowRight } from "react-icons/fa";
-import styledComponents, { keyframes } from "styled-components";
-import colors from "../../style/colors";
+import {Wrapper,SkillWrapper,Title,List,LiContainer,SkillName,Level,DotIcon,ArrowIcon} from "../../style/Skills/DisplaySkillsStyle"
 
 //array for dot colors in relation to user's level
 const dotColors = [
@@ -16,55 +14,7 @@ const findRightColor = (skill) => {
 		if (skill === dotColors[i].name) return { color: dotColors[i].color };
 	}
 };
-const liDisplay = keyframes`
-	to {
-		opacity: 1;
-	}
-`
-const Wrapper = styledComponents.div`
-	display:flex;
-	justify-content: space-around;
-	// border:1px solid purple;
-`;
-const SkillWrapper = styledComponents.div`
-	// border:1px solid green;
-	width:40%;
-	padding:30px;
-`;
-const Title = styledComponents.h1`
-	text-align: center;
-	font-size: 1.3em;
-	margin-bottom:20px;
-	text-shadow: 1px 1px 1px ${colors.shadow};
-`;
-const List = styledComponents.ul`
-	display:flex;
-	flex-direction:column;
-	align-items:center;
-`;
-const LiContainer = styledComponents.li`
-	// border:1px solid red;
-	border-radius:5px;
-	padding:10px;
-	margin-bottom:10px;
-	display:flex;
-	align-items:center;
-	background-color:${colors.orange};
-	opacity:0;
-	animation: 1.5s ${liDisplay} forwards;
-`;
-const SkillName = styledComponents.span`
-	margin-right:10px;
-`;
-const Level = styledComponents.span`
-	margin-right:10px;
-`;
-const DotIcon = styledComponents(FaCircle)`
-	font-size:0.7em;
-`;
-const ArrowIcon = styledComponents(FaArrowRight)`
-	font-size:0.6em;
-`;
+
 const DisplaySkills = () => {
 	const { frontEndSkills } = useContext(FrontSkillsContext);
 	const { backEndSkills } = useContext(BackSkillsContext);

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import colors from "../../style/colors";
 //style
-import { Form, Input, InputContainer, Validate, Wrapper, Label, Input2, Error } from "../../style/UserFormStyle";
+import { Form, Input, InputContainer, Validate, Wrapper, Label, Input2, Error, SuccessWords } from "../../style/UserFormStyle";
 //functions that return properties of register method
 import { identity, email, birthDay, phone, link } from "../../register/RegisterMethod";
 //context
@@ -59,7 +59,7 @@ const UserForm = () => {
 		setUserData(data)
 		navigate("/confirm")
 	};
-	const mesCouilles = (key)=>{
+	const isErrorAvailable = (key)=>{
 		if(errors[key]!==undefined){
 			return(
 			<>
@@ -83,8 +83,7 @@ const UserForm = () => {
 							placeholder={"Nom"}
 							{...register("nom", identity("nom"))}
 						/>
-						{/* {errors.nom && <Error>{errors.nom.message}</Error>} */}
-						{mesCouilles("nom")}
+						{isErrorAvailable("nom")}
 					</Input>
 					<Input>
 						<Label htmlFor={"prenom"}>Prénom</Label>
@@ -96,7 +95,7 @@ const UserForm = () => {
 							placeholder={"Prénom"}
 							{...register("prenom", identity("prenom"))}
 						/>
-						{errors.prenom && <Error>{errors.prenom.message}</Error>}
+						{isErrorAvailable("prenom")}
 					</Input>
 
 					<Input>
@@ -109,7 +108,7 @@ const UserForm = () => {
 							placeholder={"votre@email.com"}
 							{...register("email", email("email"))}
 						/>
-						{errors.email && <Error>{errors.email.message}</Error>}
+						{isErrorAvailable("email")}
 					</Input>
 
 					<Input>
@@ -121,7 +120,7 @@ const UserForm = () => {
 							className="form-birthdate"
 							{...register("birthday", birthDay("date de naissance"))}
 						/>
-						{errors.birthday && <Error>{errors.birthday.message}</Error>}
+						{isErrorAvailable("birthday")}
 					</Input>
 
 					<Input>
@@ -134,7 +133,7 @@ const UserForm = () => {
 							placeholder="06 ** ** ** ** facultatif"
 							{...register("telephone", phone())}
 						/>
-						{errors.telephone && <Error>{errors.telephone.message}</Error>}
+						{isErrorAvailable("telephone")}
 					</Input>
 
 					<Input>
@@ -147,13 +146,13 @@ const UserForm = () => {
 							placeholder="https:// facultatif"
 							{...register("lien", link())}
 						/>
-						{errors.lien && <Error>{errors.lien.message}</Error>}
+						{isErrorAvailable("lien")}
 					</Input>
 				</InputContainer>
 				{isValid && (frontEndSkills.length > 0 || backEndSkills.length > 0)? 
 				(
 					<>
-					<span style={{ color: "green" }}>Votre formulaire semble correct</span>
+					<SuccessWords style={{ color: "green" }}>Votre formulaire semble correct</SuccessWords>
 					<Validate type="submit" value="Valider"/>
 					</>
 				):
