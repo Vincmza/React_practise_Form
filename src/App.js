@@ -4,7 +4,6 @@ import SkillsInfosForm from "./components/Skills/SkillsInfosForm";
 import DisplaySkills from "./components/Skills/DisplaySkills";
 import UserForm from "./components/Form/UserForm"
 
-
 function App() {
 	return (
 		<div className="App">

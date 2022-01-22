@@ -23,6 +23,7 @@ export const Form = styledComponents.form`
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: linear-gradient(#99d2eb,#999ceb);
 `;
 export const Input = styledComponents.div`
     // border:1px solid green;
@@ -48,6 +49,12 @@ export const Input2 = styledComponents.input`
     height:30px;
     background-color: ${colors.blueSky};
     padding:10px;
+    transition:150ms;
+    border-radius:5px;
+    &:hover {
+        border-top: 2px solid ${colors.shadow};
+        height:40px;
+    }
     &::placeholder{
         color:black;
         font-style:italic;
@@ -57,7 +64,16 @@ export const Input2 = styledComponents.input`
         outline:none;
         background-color: ${colors.orange};
         border-radius: 5px;
+        border-bottom:none;
+        border-top:none;
     }
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+    -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+    -webkit-transition-delay: 9999s;
+  }
 `
 export const Error = styledComponents.span`
     margin-top: 10px;
@@ -83,9 +99,10 @@ export const Validate = styledComponents.input`
     border:none;
     width:auto;
     margin-top:20px;
-    margin-bottom:20px;
+    margin-bottom:40px;
     transform:scale(1);
     transition:500ms;
+    background-color: ${colors.orange};
     &:hover{
         cursor:pointer;
         background-color: ${colors.pink};

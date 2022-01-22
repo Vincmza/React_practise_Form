@@ -10,7 +10,7 @@ export function identity(msg) {
             message: "Ce champ doit contenir au minimum 2 caractères",
         },
         pattern: {
-            value: /[a-zA-Z-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ'_ ]{1,}/,
+            value: /^[a-zA-Z-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ'_ ]{1,}$/,
             message: "Ce champ ne peut pas contenir de chiffres",
         },
     };

@@ -29,7 +29,7 @@ const UserForm = () => {
 			lien: "",
 		},
 	});
-	const {userData, setUserData}=useContext(UserContext)
+	const {setUserData}=useContext(UserContext)
 	const onSubmit = (data) => {
 		console.log("Je suis un choufleur")
 		// console.log("onSubmit :", data);
@@ -58,7 +58,17 @@ const UserForm = () => {
 		}
 		setUserData(data)
 		navigate("/confirm")
-	};	
+	};
+	const mesCouilles = (key)=>{
+		if(errors[key]!==undefined){
+			return(
+			<>
+				<Error>{errors[key].message}</Error>
+			</>
+			)
+		}
+	}
+	console.log(errors)
 	return (
 		<Wrapper>
 			<Form className="form-container" onSubmit={handleSubmit(onSubmit)}>
@@ -73,7 +83,8 @@ const UserForm = () => {
 							placeholder={"Nom"}
 							{...register("nom", identity("nom"))}
 						/>
-						{errors.nom && <Error>{errors.nom.message}</Error>}
+						{/* {errors.nom && <Error>{errors.nom.message}</Error>} */}
+						{mesCouilles("nom")}
 					</Input>
 					<Input>
 						<Label htmlFor={"prenom"}>Prénom</Label>
@@ -143,7 +154,7 @@ const UserForm = () => {
 				(
 					<>
 					<span style={{ color: "green" }}>Votre formulaire semble correct</span>
-					<Validate type="submit" value="Valider" style={{"background-color": `${colors.orange}`}}/>
+					<Validate type="submit" value="Valider"/>
 					</>
 				):
 				(	
