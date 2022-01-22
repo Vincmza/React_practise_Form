@@ -111,6 +111,7 @@ export const Validate = styledComponents.input`
     }    
 `;
 export const Wrapper = styledComponents.div`
+    padding-top:60px;
     transition: 500ms;
 `
 export const SuccessWords = styledComponents.span`
