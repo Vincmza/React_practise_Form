@@ -68,7 +68,6 @@ const UserForm = () => {
 			)
 		}
 	}
-	console.log(errors)
 	return (
 		<Wrapper>
 			<Form className="form-container" onSubmit={handleSubmit(onSubmit)}>

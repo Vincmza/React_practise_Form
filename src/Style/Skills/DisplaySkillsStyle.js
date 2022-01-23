@@ -1,4 +1,5 @@
 import { FaCircle, FaArrowRight } from "react-icons/fa";
+import styled from "styled-components";
 import styledComponents, { keyframes } from "styled-components";
 import colors from "../colors";
 
@@ -39,6 +40,15 @@ export const LiContainer = styledComponents.li`
 	opacity:0;
 	animation: 1.5s ${liDisplay} forwards;
 `;
+export const IsLevelContainer = styledComponents.div`
+	// border:1px solid red;
+`;
+export const IsLevel = styledComponents.li`
+	list-style-type:none;
+	text-align:center;
+	margin-bottom:10px;
+	color:red;
+`
 export const SkillName = styledComponents.span`
 	margin-right:10px;
 `;
