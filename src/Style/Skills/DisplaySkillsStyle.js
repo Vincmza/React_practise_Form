@@ -2,6 +2,7 @@ import { FaCircle, FaArrowRight } from "react-icons/fa";
 import styledComponents, { keyframes } from "styled-components";
 import colors from "../colors";
 
+
 export const liDisplay = keyframes`
 	to {
 		opacity: 1;
@@ -17,11 +18,11 @@ export const Wrapper = styledComponents.div`
 	}
 `;
 export const SkillWrapper = styledComponents.div`
-	border:2px solid ${colors.orange};
+	${(props)=>props.children.props.children && `border:2px solid ${colors.orange};`}
 	border-radius:10px;
 	margin-top:20px;
 	width:40%;
-	padding:30px;
+	padding:20px;
 	@media (max-width:830px){
 		width:60%;
 	}
@@ -35,11 +36,11 @@ export const SkillWrapper = styledComponents.div`
 `;
 export const Title = styledComponents.h1`
 	text-align: center;
-	font-size: 1.3em;
+	font-size: 1.1em;
 	margin-bottom:20px;
 	text-shadow: 1px 1px 1px ${colors.shadow};
 	@media (max-width:900px){
-		font-size:1em;
+		font-size:0.9em;
 	}
 `;
 export const List = styledComponents.ul`

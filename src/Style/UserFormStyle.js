@@ -35,6 +35,15 @@ export const Input = styledComponents.div`
     margin-bottom: 10px;
     padding:10px;
     width:60%;
+    @media (max-width:750px){
+        width:70%;
+    }
+    @media (max-width:600px){
+        width:75%;
+    }
+    @media (max-width:450px){
+        width:90%;
+    }
 `;
 export const Label = styledComponents.label`
     padding:10px 30px;
@@ -74,15 +83,22 @@ export const Input2 = styledComponents.input`
     -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
     -webkit-transition-delay: 9999s;
   }
+  @media (max-width:1000px){
+      &::placeholder{
+          font-size:0.8em;
+      }
+  }
 `
 export const Error = styledComponents.span`
     margin-top: 10px;
     font-size: 0.7em;
     color: red;
-    display:flex;
-    justify-content: center;
+    text-align:center;
     // border:1px solid red;
     animation: 700ms ${errorMove} linear;
+    @media (max-width:450px){
+        font-size:0.6em;
+    }
 `
 export const InputContainer = styledComponents.div`
     // border:1px solid blue;
@@ -91,6 +107,18 @@ export const InputContainer = styledComponents.div`
     flex-direction: column;
     width:40%;
     height:auto;
+    @media (max-width:1000px){
+        width:50%;
+    }
+    @media (max-width:750px){
+        width:60%;
+    }
+    @media (max-width:600px){
+        width:70%;
+    }
+    @media (max-width:450px){
+        width:85%;
+    }
 `;
 export const Validate = styledComponents.input`
     border-radius:5px;

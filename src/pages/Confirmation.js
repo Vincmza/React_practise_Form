@@ -1,15 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext,useState  } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext, FrontSkillsContext, BackSkillsContext } from "../context/index";
+//component
 import Loader from "../components/Loader";
 import styledComponents from "styled-components";
+//style
 import colors from "../style/colors";
+
 
 const Wrapper = styledComponents.div`
     // border:1px solid red;
     padding:30px;
     display:flex;
     flex-direction:column;
+	@media (max-width:490px){
+		padding:30px 0px;
+	}
 `;
 const GlobalTitle = styledComponents.h1`
 	width:40%;
@@ -21,6 +27,16 @@ const GlobalTitle = styledComponents.h1`
 	background-color: ${colors.orangeLight};
 	border-radius:10px;
 	// border:1px solid black;
+	@media (max-width:900px){
+		font-size:1.4em;
+		width:60%;
+		padding:10px;
+	}
+	@media (max-width:550px){
+		font-size:1.2em;
+		width:85%;
+	}
+
 `;
 const GlobalTitleContainer = styledComponents.div`
 	width:100%;
@@ -36,6 +52,10 @@ const IdentityAndSkills = styledComponents.div`
     width:100%;
     padding:10px;
     margin-top:10px;
+	@media (max-width:1085px){
+		flex-direction:column;
+		align-items:center;
+	}
 `;
 const IdentityTitle = styledComponents.h2`
     font-size:1.5em;
@@ -45,20 +65,38 @@ const IdentityTitle = styledComponents.h2`
     text-shadow: 1px 1px 2px ${colors.shadow};
 	background-color: ${colors.redLight};
 	border-radius:10px;
+	@media (max-width:675px){
+		font-size:1.2em;
+	}
+	@media (max-width:400px){
+		font-size:1em;
+	}
 `;
 const IdentityContainer = styledComponents.div`
-	width:40%;
+	width:45%;
 	border-radius:10px;
     padding:20px;
     display:flex;
     flex-direction:column;
     background-color: ${colors.orangeLight};
 	box-shadow: 2px 2px 5px ${colors.shadow};
+	@media (max-width:1085px){
+		width:60%;
+	}
+	@media (max-width:850px){
+		width:80%;
+	}
+	@media (max-width:540px){
+		width:95%;
+	}
 `;
 const Identity = styledComponents.div`
     // border:1px solid black;
     padding:10px;
     margin-top:10px;
+	@media (max-width:350px){
+		padding:10px 0px;
+	}
 `;
 const IdCard = styledComponents.div`
 	margin-top:10px;
@@ -72,19 +110,35 @@ const IdTitle = styledComponents.h3`
 	padding:10px;
 	background-color: ${colors.green};
 	border-radius: 10px;
+	@media (max-width:675px){
+		font-size:0.9em;
+	}
 `
 const IdContent = styledComponents.span`
 	// border:1px solid red;
 	padding:10px 20px;
 	margin-top:10px;
+	@media (max-width:675px){
+		font-size:0.9em;
+	}
 `
 const SkillsContainer = styledComponents.div`
     // border:1px solid yellow;
     padding:20px;
 	background-color: ${colors.orangeLight};
 	border-radius:10px;
-	width:40%;
+	width:45%;
 	box-shadow: 2px 2px 5px ${colors.shadow};
+	@media (max-width:1085px){
+		width:60%;
+		margin-top:20px;
+	}
+	@media (max-width:850px){
+		width:80%;
+	}
+	@media (max-width:540px){
+		width:95%;
+	}
 `;
 const SkillTitle = styledComponents.h2`
     text-align:center;
@@ -94,6 +148,12 @@ const SkillTitle = styledComponents.h2`
 	background-color: ${colors.redLight};
 	border-radius:10px;
 	margin-bottom:10px;
+	@media (max-width:675px){
+		font-size:1.2em;
+	}
+	@media (max-width:400px){
+		font-size:1em;
+	}
 `;
 const TypeTitle = styledComponents.h3`
     font-size:1.2em;
@@ -103,10 +163,16 @@ const TypeTitle = styledComponents.h3`
 	background-color: ${colors.green};
 	border-radius:10px;
 	text-align:center;
+	@media (max-width:675px){
+		font-size:0.9em;
+	}
 `;
 const TypeContainer = styledComponents.div`
     // border:1px solid blue;
     padding:20px;
+	@media (max-width:350px){
+		padding:10px 0px;
+	}
 `;
 const List = styledComponents.ul`
     border:1px solid ${colors.green};
@@ -117,9 +183,15 @@ const Li = styledComponents.li`
     padding:10px;
 	display:flex;
 	align-items:center;
+	@media (max-width:675px){
+		font-size:0.9em;
+	}
 `;
 const Level = styledComponents.p`
     padding:10px 0px;
+	@media (max-width:675px){
+		font-size:0.9em;
+	}
 `;
 const NoSkill = styledComponents.h3`
 	font-size:1.2em;
@@ -128,6 +200,9 @@ const NoSkill = styledComponents.h3`
 	background-color: ${colors.green};
 	border-radius:10px;
 	text-align:center;
+	@media (max-width:675px){
+		font-size:0.9em;
+	}
 `;
 const Icon = styledComponents.img`
 	width:25px;
@@ -138,7 +213,8 @@ const Icon = styledComponents.img`
 const ButtonContainer = styledComponents.div`
 	width:100%;
 	display:flex;
-	justify-content:center;
+	flex-direction:column;
+	align-items:center;
 	margin-top:40px;
 	margin-bottom:20px;
 `
@@ -155,6 +231,14 @@ const ResetButton = styledComponents.input`
 		font-size:1.3em;
 		cursor:pointer;
 	}
+`
+const Sentence = styledComponents.div`
+	display:flex;
+	justify-content:center;
+	font-size:0.7em;
+	padding:20px;
+	text-align:center;
+	font-style:italic;
 `
 //variable allowing to build an array upon the folder assets containing all icons in 
 let importAll = (r) => r.keys().map(r);
@@ -195,10 +279,17 @@ const pathNames = {
 };
 
 const Confirmation = () => {
+	const [isLoading, setIsLoading]= useState(false)
 	const { userData, setUserData } = useContext(UserContext);
 	const { frontEndSkills, setFrontEndSkills } = useContext(FrontSkillsContext);
 	const { backEndSkills, setBackEndSkills } = useContext(BackSkillsContext);
 	let navigate = useNavigate()
+	const displayLoader = ()=>{
+		setIsLoading((pv)=>(!pv))
+		setTimeout(() => {
+			resetAll()
+		}, 3000);
+	}
 	const resetAll = ()=>{
 		navigate("/")
 		setFrontEndSkills([])
@@ -276,7 +367,7 @@ const Confirmation = () => {
 			</GlobalTitleContainer>
 			<IdentityAndSkills>
 				<IdentityContainer>
-					<IdentityTitle>Vos données personnelles :</IdentityTitle>
+					<IdentityTitle>Vos données personnelles</IdentityTitle>
 					<Identity>	
 						<IdCard>
 							<IdTitle>Vous êtes :</IdTitle> 
@@ -307,11 +398,11 @@ const Confirmation = () => {
 					</Identity>
 				</IdentityContainer>
 				<SkillsContainer>
-					<SkillTitle>Voici vos compétences :</SkillTitle>
+					<SkillTitle>Voici vos compétences</SkillTitle>
 					<TypeContainer>
 						{frontEndSkills.length > 0 ? (
 							<>
-								<TypeTitle>En ce qui concerne la partie frontend :</TypeTitle>
+								<TypeTitle>En ce qui concerne la partie frontend</TypeTitle>
 								{checkLevel("front", "Débutant")}
 								{checkLevel("front", "Intermédiaire")}
 								{checkLevel("front", "Confirmé")}
@@ -326,7 +417,7 @@ const Confirmation = () => {
 					<TypeContainer>
 						{backEndSkills.length > 0 ? (
 							<>
-								<TypeTitle>En ce qui concerne la partie backend :</TypeTitle>
+								<TypeTitle>En ce qui concerne la partie backend</TypeTitle>
 								{checkLevel("back", "Débutant")}
 								{checkLevel("back", "Intermédiaire")}
 								{checkLevel("back", "Confirmé")}
@@ -341,8 +432,12 @@ const Confirmation = () => {
 				</SkillsContainer>
 			</IdentityAndSkills>
 			<ButtonContainer>
-				<ResetButton type="button" value="Réinitialiser" onClick={resetAll}/>
+				{isLoading && <Loader/>}
+				<ResetButton type="button" value="Réinitialiser" onClick={displayLoader}/>
 			</ButtonContainer>
+			<Sentence>
+				<span>Petite interface codée en React, merci d'avoir joué le jeu</span>
+			</Sentence>
 		</Wrapper>
 	);
 };
