@@ -16,6 +16,10 @@ export const OneBox = styledComponents.div`
 	animation-delay: ${(props)=>props.children[0].props.anim}ms;
 	display:flex;
 	align-items:center;
+	// border:1px solid green;
+	@media (max-width:600px){
+		width:200px;
+	}
 `
 export const BoxLabel = styledComponents.label`
 	padding:0px 10px;
