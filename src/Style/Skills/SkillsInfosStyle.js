@@ -32,13 +32,20 @@ export const Wrapper = styledComponents.div`
 	// border:1px solid purple;
 	display:flex;
 	justify-content:space-around;
-	padding:30px;
+	padding:0px 20px;
+	@media (max-width:1000px){
+		flex-direction:column;
+	}
 `;
 export const SkillContainer = styledComponents.div`
-	// border:1px solid ${colors.orange};
-	border-radius:20px;
+	border:2px solid ${colors.orange};
+	border-radius:10px;
+	margin-top:20px;
 	padding:30px;
 	display:flex;
+	@media (max-width:600px){
+		flex-direction:column;
+	}
 `;
 export const TitleContainer = styledComponents.div`
 	// border:1px solid blue;
@@ -48,6 +55,9 @@ export const Title = styledComponents.h1`
 	padding:10px;
 	font-size:1.8em;
 	text-shadow: 1px 1px 2px ${colors.shadow};
+	@media (max-width:600px){
+		font-size:1.4em;
+	}
 `;
 export const Header = styledComponents.div`
 	display:flex;
@@ -83,6 +93,11 @@ export const Boxes = styledComponents.div`
 	font-size: 1.2em;
 	padding:20px;
 	// border:1px solid yellow;
+	@media (max-width:600px){
+		display:flex;
+		flex-direction:column;
+		align-items:center;
+	}
 `;
 export const ImgContainer = styledComponents.div`
 	width:25px;

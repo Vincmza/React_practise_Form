@@ -47,6 +47,13 @@ export const ImageContainer = styledComponents.div`
     height:200px;
     transform: translateX(-100vw);
     animation: 2s ${imgMove} cubic-bezier(.32,1.14,.44,1.18) forwards;
+    // border:1px solid red;
+    @media (max-width:700px){
+        width:50%;
+    }
+    @media (max-width:400px){
+        width:80%;
+    }
 `;
 export const Image = styledComponents.img`
     object-fit: cover;
@@ -63,6 +70,12 @@ export const Title = styledComponents.h1`
     text-align:center;
     font-size:2.5em;
     text-shadow: 1px 1px 2px ${colors.shadow};
+    @media (max-width:700px){
+        font-size:2em;
+    }
+    @media (max-width:400px){
+        font-size:1.7em;
+    }
 `;
 export const TextHeader = styledComponents.p`
     text-align:center;
@@ -88,5 +101,8 @@ export const Button = styledComponents.input`
         transform:scale(1.2);
         cursor: pointer;
         background-color: ${colors.pink};
+    }
+    @media (max-width:400px){
+        margin-bottom:20px;
     }
 `;

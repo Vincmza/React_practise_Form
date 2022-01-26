@@ -196,14 +196,14 @@ const pathNames = {
 
 const Confirmation = () => {
 	const { userData, setUserData } = useContext(UserContext);
-	const { frontEndSkills, setFrontendSkills } = useContext(FrontSkillsContext);
+	const { frontEndSkills, setFrontEndSkills } = useContext(FrontSkillsContext);
 	const { backEndSkills, setBackEndSkills } = useContext(BackSkillsContext);
 	let navigate = useNavigate()
 	const resetAll = ()=>{
-		setUserData([])
-		setFrontendSkills([])
-		setBackEndSkills([])
 		navigate("/")
+		setFrontEndSkills([])
+		setBackEndSkills([])
+		setUserData([])
 	}
 	//Display the skills according the level choosen
 	const skillsToDisplay = (type, level) => {
