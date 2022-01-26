@@ -108,7 +108,10 @@ export const Validate = styledComponents.input`
         cursor:pointer;
         background-color: ${colors.pink};
         transform:scale(1.2);
-    }    
+    }
+    &:focus {
+        border:2px solid red;
+    } 
 `;
 export const Wrapper = styledComponents.div`
     padding-top:60px;

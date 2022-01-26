@@ -2,6 +2,7 @@ import React, {useContext,useState}from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import colors from "../../style/colors";
+import Loader from "../Loader"
 //style
 import { Form, Input, InputContainer, Validate, Wrapper, Label, Input2, Error, SuccessWords } from "../../style/UserFormStyle";
 //functions that return properties of register method
@@ -10,14 +11,18 @@ import { identity, email, birthDay, phone, link } from "../../register/RegisterM
 import {UserContext, FrontSkillsContext, BackSkillsContext} from "../../context/index"
 
 
+
 const UserForm = () => {
 	let navigate = useNavigate()
 	const {frontEndSkills}=useContext(FrontSkillsContext)
 	const {backEndSkills}=useContext(BackSkillsContext)
+	const goToConfirmPage = ()=>{
+		navigate("/confirm")
+	}
 	const {
 		register,
 		handleSubmit,
-		formState: { errors, isValid },
+		formState: { errors, isValid, isSubmitSuccessful },
 	} = useForm({
 		mode: "onBlur",
 		defaultValues: {
@@ -57,7 +62,9 @@ const UserForm = () => {
 			}
 		}
 		setUserData(data)
-		navigate("/confirm")
+		setTimeout(() => {
+			goToConfirmPage()
+		}, 3000);
 	};
 	const isErrorAvailable = (key)=>{
 		if(errors[key]!==undefined){
@@ -68,6 +75,7 @@ const UserForm = () => {
 			)
 		}
 	}
+	
 	return (
 		<Wrapper>
 			<Form className="form-container" onSubmit={handleSubmit(onSubmit)}>
@@ -152,8 +160,10 @@ const UserForm = () => {
 				(
 					<>
 					<SuccessWords style={{ color: "green" }}>Votre formulaire semble correct</SuccessWords>
+					{isSubmitSuccessful && <Loader/>}
 					<Validate type="submit" value="Valider"/>
 					</>
+					
 				):
 				(	
 					<>

@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContext, FrontSkillsContext, BackSkillsContext } from "../context/index";
+import Loader from "../components/Loader";
 import styledComponents from "styled-components";
 import colors from "../style/colors";
 
@@ -15,12 +17,17 @@ const GlobalTitle = styledComponents.h1`
     padding:20px;
     font-size:1.8em;
     text-shadow: 1px 1px 2px ${colors.shadow};
+	box-shadow: 2px 2px 5px ${colors.shadow};
+	background-color: ${colors.orangeLight};
+	border-radius:10px;
 	// border:1px solid black;
 `;
 const GlobalTitleContainer = styledComponents.div`
 	width:100%;
 	display:flex;
 	justify-content:center;
+	margin-bottom:20px;
+	margin-top:20px;
 `;
 const IdentityAndSkills = styledComponents.div`
     // border:1px solid purple;
@@ -47,17 +54,6 @@ const IdentityContainer = styledComponents.div`
     flex-direction:column;
     background-color: ${colors.orangeLight};
 	box-shadow: 2px 2px 5px ${colors.shadow};
-`;
-const ImgContainer = styledComponents.div`
-    width:100%;
-    height:200px;
-    display:flex;
-    justify-content:center;
-`;
-const Img = styledComponents.img`
-    width:200px;
-    height:100%;
-    object-fit:contain;
 `;
 const Identity = styledComponents.div`
     // border:1px solid black;
@@ -126,6 +122,12 @@ const Level = styledComponents.p`
     padding:10px 0px;
 `;
 const NoSkill = styledComponents.h3`
+	font-size:1.2em;
+	padding:10px;
+	text-shadow: 1px 1px 2px ${colors.shadow};
+	background-color: ${colors.green};
+	border-radius:10px;
+	text-align:center;
 `;
 const Icon = styledComponents.img`
 	width:25px;
@@ -133,6 +135,28 @@ const Icon = styledComponents.img`
 	margin-left:10px;
 	object-fit:contain;
 `
+const ButtonContainer = styledComponents.div`
+	width:100%;
+	display:flex;
+	justify-content:center;
+	margin-top:40px;
+	margin-bottom:20px;
+`
+const ResetButton = styledComponents.input`
+	font-size:1.1em;
+	border:none;
+	padding:10px 15px;
+	border-radius:10px;
+	background-color: ${colors.orange};
+	box-shadow: 2px 2px 5px ${colors.shadow};
+	transition:500ms;
+	&:hover{
+		background-color: ${colors.pink};
+		font-size:1.3em;
+		cursor:pointer;
+	}
+`
+//variable allowing to build an array upon the folder assets containing all icons in 
 let importAll = (r) => r.keys().map(r);
 ;
 const [
@@ -169,13 +193,19 @@ const pathNames = {
 	sql,
 	symfony
 };
-console.log(pathNames)
+
 const Confirmation = () => {
-	const { userData } = useContext(UserContext);
-	const { frontEndSkills } = useContext(FrontSkillsContext);
-	const { backEndSkills } = useContext(BackSkillsContext);
+	const { userData, setUserData } = useContext(UserContext);
+	const { frontEndSkills, setFrontendSkills } = useContext(FrontSkillsContext);
+	const { backEndSkills, setBackEndSkills } = useContext(BackSkillsContext);
+	let navigate = useNavigate()
+	const resetAll = ()=>{
+		setUserData([])
+		setFrontendSkills([])
+		setBackEndSkills([])
+		navigate("/")
+	}
 	//Display the skills according the level choosen
-	console.log(frontEndSkills);
 	const skillsToDisplay = (type, level) => {
 		if (type === "front") {
 			return (
@@ -275,9 +305,6 @@ const Confirmation = () => {
 								<IdContent>{userData.lien}</IdContent>
 							</IdCard>}
 					</Identity>
-					<ImgContainer>
-						{/* <Img src={} alt="" /> */}
-					</ImgContainer>
 				</IdentityContainer>
 				<SkillsContainer>
 					<SkillTitle>Voici vos compétences :</SkillTitle>
@@ -313,6 +340,9 @@ const Confirmation = () => {
 					</TypeContainer>
 				</SkillsContainer>
 			</IdentityAndSkills>
+			<ButtonContainer>
+				<ResetButton type="button" value="Réinitialiser" onClick={resetAll}/>
+			</ButtonContainer>
 		</Wrapper>
 	);
 };
