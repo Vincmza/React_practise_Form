@@ -3,10 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { UserContext, FrontSkillsContext, BackSkillsContext } from "../context/index";
 //component
 import Loader from "../components/Loader";
-import styledComponents from "styled-components";
+import styledComponents, { keyframes } from "styled-components";
 //style
 import colors from "../style/colors";
 
+const theArrival = keyframes`
+	to{
+		transform: translateX(0%);
+	}
+`
 
 const Wrapper = styledComponents.div`
     // border:1px solid red;
@@ -80,6 +85,9 @@ const IdentityContainer = styledComponents.div`
     flex-direction:column;
     background-color: ${colors.orangeLight};
 	box-shadow: 2px 2px 5px ${colors.shadow};
+	transform: translateX(-100vh) rotate(-180deg);
+	animation: 1.5s ${theArrival} ease-in-out forwards;
+	animation-delay:400ms;
 	@media (max-width:1085px){
 		width:60%;
 	}
@@ -129,6 +137,8 @@ const SkillsContainer = styledComponents.div`
 	border-radius:10px;
 	width:45%;
 	box-shadow: 2px 2px 5px ${colors.shadow};
+	transform: translateX(-200vh) rotate(-180deg);
+	animation: 1.5s ${theArrival} ease-in-out forwards;
 	@media (max-width:1085px){
 		width:60%;
 		margin-top:20px;
