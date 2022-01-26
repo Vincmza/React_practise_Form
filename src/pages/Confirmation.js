@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { UserContext, FrontSkillsContext, BackSkillsContext } from "../context/index";
 import styledComponents from "styled-components";
 import colors from "../style/colors";
-import logo from "../assets/form.png";
 
 const Wrapper = styledComponents.div`
     // border:1px solid red;
@@ -60,9 +59,29 @@ const Img = styledComponents.img`
     height:100%;
     object-fit:contain;
 `;
-const IdCard = styledComponents.p`
-    padding:10px
+const Identity = styledComponents.div`
+    // border:1px solid black;
+    padding:10px;
+    margin-top:10px;
 `;
+const IdCard = styledComponents.div`
+	margin-top:10px;
+	display:flex;
+	flex-direction:column;
+	// border:1px solid blue;
+`;
+const IdTitle = styledComponents.h3`
+	text-shadow: 1px 1px 2px ${colors.shadow};
+	font-size:1.2em;
+	padding:10px;
+	background-color: ${colors.green};
+	border-radius: 10px;
+`
+const IdContent = styledComponents.span`
+	// border:1px solid red;
+	padding:10px 20px;
+	margin-top:10px;
+`
 const SkillsContainer = styledComponents.div`
     // border:1px solid yellow;
     padding:20px;
@@ -71,11 +90,6 @@ const SkillsContainer = styledComponents.div`
 	width:40%;
 	box-shadow: 2px 2px 5px ${colors.shadow};
 `;
-const Identity = styledComponents.div`
-    // border:1px solid black;
-    padding:10px;
-    margin-top:30px;
-`;
 const SkillTitle = styledComponents.h2`
     text-align:center;
     font-size:1.5em;
@@ -83,6 +97,7 @@ const SkillTitle = styledComponents.h2`
     text-shadow: 1px 1px 2px ${colors.shadow};
 	background-color: ${colors.redLight};
 	border-radius:10px;
+	margin-bottom:10px;
 `;
 const TypeTitle = styledComponents.h3`
     font-size:1.2em;
@@ -232,16 +247,33 @@ const Confirmation = () => {
 			<IdentityAndSkills>
 				<IdentityContainer>
 					<IdentityTitle>Vos données personnelles :</IdentityTitle>
-					<Identity>
+					<Identity>	
 						<IdCard>
-							Vous êtes : {userData.nom.toUpperCase()} {userData.prenom}
+							<IdTitle>Vous êtes :</IdTitle> 
+							<IdContent>{userData.nom.toUpperCase()} {userData.prenom}</IdContent>
 						</IdCard>
-						<IdCard>Votre date de naissance est le : {userData.birthday}</IdCard>
-						<IdCard>L'email que vous utilisez est : {userData.email}</IdCard>
+						
+						<IdCard>
+							<IdTitle>Votre date de naissance est le : </IdTitle>
+							<IdContent>{userData.birthday}</IdContent>
+						</IdCard>
+
+						<IdCard>
+							<IdTitle>L'email que vous utilisez est : </IdTitle>
+							<IdContent>{userData.email}</IdContent>
+						</IdCard>
+
 						{userData.telephone && (
-							<IdCard>Vous êtes joignable au : {userData.telephone}</IdCard>
+							<IdCard>
+								<IdTitle>Vous êtes joignable au : </IdTitle>
+								<IdContent>{userData.telephone}</IdContent>
+							</IdCard>
 						)}
-						{userData.lien && <IdCard>Votre compte github : {userData.lien}</IdCard>}
+						{userData.lien && 
+							<IdCard>
+								<IdTitle>Votre compte github : </IdTitle>
+								<IdContent>{userData.lien}</IdContent>
+							</IdCard>}
 					</Identity>
 					<ImgContainer>
 						{/* <Img src={} alt="" /> */}
