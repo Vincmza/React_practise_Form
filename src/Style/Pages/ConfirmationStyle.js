@@ -2,7 +2,7 @@ import styledComponents, { keyframes } from "styled-components";
 //style
 import colors from "../colors";
 
-const theArrival = keyframes`
+export const theArrival = keyframes`
 	to{
 		transform: translateX(0%);
 	}
