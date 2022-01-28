@@ -156,6 +156,9 @@ const UserForm = () => {
 						{isErrorAvailable("lien")}
 					</Input>
 				</InputContainer>
+
+				{(frontEndSkills.length !== 0 || backEndSkills.length !== 0) ?(<></>):(<span style={{"color": "red", "font-size":"0.8em"}}>Vous devez renseigner au moins une compétence</span>)}
+				
 				{isValid && (frontEndSkills.length > 0 || backEndSkills.length > 0)? 
 				(
 					<>

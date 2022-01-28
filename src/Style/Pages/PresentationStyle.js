@@ -1,6 +1,6 @@
 import styledComponents, { keyframes } from "styled-components";
 //Colors
-import colors from "../style/colors";
+import colors from "../colors";
 
 export const Wrapper = styledComponents.div`
     height:100%;

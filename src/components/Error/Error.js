@@ -17,7 +17,6 @@ const BlinkRed = keyframes`
         text-shadow:1px 1px 2px red;
     }
 `
-
 const Wrapper = styledComponents.div`
     padding:60px;
     display:flex;
@@ -77,7 +76,6 @@ const Radioactive = styledComponents(FaRadiationAlt)`
     animation: 1.5s ${Explosion} linear infinite;
     border-radius:200px;
 `
-
 
 const Error = () => {
     return (

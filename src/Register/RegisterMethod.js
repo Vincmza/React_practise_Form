@@ -66,6 +66,10 @@ export function phone() {
 }
 export function link() {
     return {
+        maxLength : {
+            value:150,
+            message: "Votre lien ne peut pas dépasser 150 caractères"
+        },
         pattern: {
             value: /^(https?\:)\/\/(([^:\/?#]*)(?:\:([0-9]+))?)([\/]{0,1}[^?#]*)(\?[^#]*|)(#.*|)$/,
             message: "Ceci n'est pas une url"

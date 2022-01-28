@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import {DiAptana} from "react-icons/di"
 //style
-import {Wrapper, IconContainer, ImageContainer, Image, HeadWrapper, Title, TextHeader, TextDown, Button}from"../style/PresentationStyle"
+import {Wrapper, IconContainer, ImageContainer, Image, HeadWrapper, Title, TextHeader, TextDown, Button}from"../style/Pages/PresentationStyle"
 //Image
 import img from "../assets/form.png";
 
