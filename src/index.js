@@ -11,7 +11,7 @@ import reportWebVitals from "./reportWebVitals";
 import {FrontSkillsProvider, BackSkillsProvider, UserContextProvider} from "./context/index"
 //css
 import "./index.css";
-import "./style/App.css";
+import "./App.css";
 
 ReactDOM.render(
 	<React.StrictMode>
