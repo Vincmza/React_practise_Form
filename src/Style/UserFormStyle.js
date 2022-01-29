@@ -148,3 +148,10 @@ export const Wrapper = styledComponents.div`
 export const SuccessWords = styledComponents.span`
     animation: 1.5s ${errorMove} linear;
 `
+export const IsSkillChoosen = styledComponents.span`
+    border-radius:5px;
+    color:red;
+    font-size:0.7em;
+    text-align:center;
+    padding:10px;
+`

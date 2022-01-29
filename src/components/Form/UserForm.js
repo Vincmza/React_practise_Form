@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import colors from "../../style/colors";
 import Loader from "../Loader"
 //style
-import { Form, Input, InputContainer, Validate, Wrapper, Label, Input2, Error, SuccessWords } from "../../style/UserFormStyle";
+import { Form, Input, InputContainer, Validate, Wrapper, Label, Input2, Error, SuccessWords,IsSkillChoosen } from "../../style/UserFormStyle";
 //functions that return properties of register method
 import { identity, email, birthDay, phone, link } from "../../register/RegisterMethod";
 //context
@@ -157,7 +157,7 @@ const UserForm = () => {
 					</Input>
 				</InputContainer>
 
-				{(frontEndSkills.length !== 0 || backEndSkills.length !== 0) ?(<></>):(<span style={{"color": "red", "font-size":"0.8em"}}>Vous devez renseigner au moins une compétence</span>)}
+				{(frontEndSkills.length !== 0 || backEndSkills.length !== 0) ?(<></>):(<IsSkillChoosen>Vous devez renseigner au moins une compétence</IsSkillChoosen>)}
 				
 				{isValid && (frontEndSkills.length > 0 || backEndSkills.length > 0)? 
 				(
